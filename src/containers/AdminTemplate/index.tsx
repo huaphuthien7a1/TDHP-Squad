@@ -1,5 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
+import {
+  Route,
+  RouteProps,
+  RouteComponentProps,
+  Redirect,
+} from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 
 interface PrivateRouteProps extends RouteProps {
@@ -24,11 +29,16 @@ const AdminTemplate: FunctionComponent<PrivateRouteProps> = ({
   return (
     <Route
       {...rest}
-      render={(props: any) => (
-        <LayoutAdmin>
-          <Component {...props} />
-        </LayoutAdmin>
-      )}
+      render={(props: any) => {
+        const token = localStorage.getItem('token');
+        if (token)
+          return (
+            <LayoutAdmin>
+              <Component {...props} />
+            </LayoutAdmin>
+          );
+        return <Redirect to='/' />;
+      }}
     ></Route>
   );
 };
