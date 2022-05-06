@@ -5,7 +5,7 @@ import {
   RouteComponentProps,
   Redirect,
 } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
+import Sidebar from '../../components/Sidebar';
 
 interface PrivateRouteProps extends RouteProps {
   component:
@@ -16,7 +16,7 @@ interface PrivateRouteProps extends RouteProps {
 function LayoutAdmin({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <>
-      <Navbar />
+      <Sidebar />
       {children}
     </>
   );

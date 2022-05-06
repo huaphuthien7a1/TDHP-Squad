@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
-
 interface PrivateRouteProps extends RouteProps {
   component:
     | React.ComponentType<RouteComponentProps<any>>
@@ -12,7 +11,8 @@ function LayoutHome({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <>
       <Navbar />
-      {children}
+
+      <div className='w-full h-full p-6 mt-[64px]'>{children}</div>
     </>
   );
 }
