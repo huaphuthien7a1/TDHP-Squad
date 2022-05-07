@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,7 +14,11 @@
     "axios": "^0.27.2",
     "eslint": "^8.14.0",
     "moment": "^2.29.3",
+<<<<<<< HEAD
     "pure-react-carousel": "^1.28.1",
+=======
+    "node-sass": "^7.0.1",
+>>>>>>> 38608eff35cc4e0b0ca6b6fde4167660cee8646a
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.1",
@@ -68,6 +73,7 @@
     "lint-staged": "^12.4.1",
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
+    "sass": "^1.51.0",
     "tailwindcss": "^3.0.24"
   }
 }

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import React, {  FC } from 'react';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { Carousel } from 'react-responsive-carousel';
 
-const Banner = () => {
+const Banner: FC = () => {
   return (
     <div className='w-full flex justify-center'>
       <div className='w-2/3'>
