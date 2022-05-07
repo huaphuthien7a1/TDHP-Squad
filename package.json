@@ -15,11 +15,8 @@
     "eslint": "^8.14.0",
     "firebase": "^9.8.0",
     "moment": "^2.29.3",
-<<<<<<< HEAD
     "pure-react-carousel": "^1.28.1",
-=======
     "node-sass": "^7.0.1",
->>>>>>> 38608eff35cc4e0b0ca6b6fde4167660cee8646a
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.1",
