@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div>
       <Banner />
-      <h1 className='text-3xl mt-4 font-bold'>Khóa học</h1>
+      <h1 className='text-3xl mt-4 font-bold'>COURSES</h1>
       <div className='grid grid-cols-4 gap-4 mt-4'>
         <div className='max-w-sm rounded overflow-hidden shadow-lg'>
           <img
@@ -241,7 +241,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <h1 className='text-3xl mt-4 font-bold'>Lộ trình học</h1>
+      <h1 className='text-3xl mt-4 font-bold'>LEARNING PATH</h1>
       <div className='grid grid-cols-4 gap-4 mt-4'>
         <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
           Lộ trình học Web UI
