@@ -1,4 +1,5 @@
 import Navbar from 'components/Navbar';
+import Sidebar from 'components/Sidebar';
 import React, { FunctionComponent } from 'react';
 import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
 interface PrivateRouteProps extends RouteProps {
@@ -11,7 +12,8 @@ function LayoutHome({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <>
       <Navbar />
-      <div className='container p-6 mt-[64px]'>{children}</div>
+      <Sidebar />
+      <div className='p-6 mt-[64px] ml-[160px]'>{children}</div>
     </>
   );
 }

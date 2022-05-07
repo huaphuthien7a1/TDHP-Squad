@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 drop-shadow-lg'>
+    <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2'>
       <Link to='/'>
         <h1 className='text-5xl font-bold text-secondary'>TDHP</h1>
       </Link>
