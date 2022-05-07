@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.3",
     "axios": "^0.27.2",
     "eslint": "^8.14.0",
+    "firebase": "^9.8.0",
     "moment": "^2.29.3",
 <<<<<<< HEAD
     "pure-react-carousel": "^1.28.1",
