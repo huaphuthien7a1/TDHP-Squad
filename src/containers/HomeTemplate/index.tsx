@@ -12,7 +12,7 @@ function LayoutHome({ children }: { children: React.ReactNode }): JSX.Element {
     <>
       <Navbar />
 
-      <div className='w-full h-full p-6 mt-[64px]'>{children}</div>
+      <div className='container p-6 mt-[64px]'>{children}</div>
     </>
   );
 }

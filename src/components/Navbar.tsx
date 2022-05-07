@@ -4,20 +4,20 @@ const Navbar = () => {
   return (
     <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 drop-shadow-lg'>
       <Link to='/'>
-        <h1 className='text-2xl'>TDHP</h1>
+        <h1 className='text-3xl font-bold'>TDHP</h1>
       </Link>
       <div className='flex justify-center'>
         <div className='xl:w-96'>
           <div className='input-group relative flex items-stretch w-full'>
             <input
               type='search'
-              className='form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+              className='rounded-l-lg form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-gray-600 focus:outline-none'
               placeholder='Search'
               aria-label='Search'
               aria-describedby='button-addon2'
             />
             <button
-              className='btn inline-block px-6 py-2.5 bg-zinc-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-zinc-800 hover:shadow-lg focus:bg-zinc-800  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center'
+              className='rounded-r-lg btn inline-block px-6 py-2.5 bg-zinc-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-zinc-800 hover:shadow-lg focus:bg-zinc-800  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-zinc-700 active:shadow-lg transition duration-150 ease-in-out flex items-center'
               type='button'
               id='button-addon2'
             >
@@ -41,11 +41,11 @@ const Navbar = () => {
         </div>
       </div>
       <div>
-        <Link to='/login'>
+        <Link to='/register' className='hover:opacity-75'>
           <span>Đăng ký</span>
         </Link>{' '}
         /{' '}
-        <Link to='/register'>
+        <Link to='/login' className='hover:opacity-75'>
           <span>Đăng nhập</span>
         </Link>
       </div>
