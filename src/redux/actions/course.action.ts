@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { Dispatch } from 'redux';
-import * as ActionType from '../constants';
-import { URL_GET_COURSES } from '../urlAPI';
+import axios from "axios";
+import { Dispatch } from "redux";
+import * as ActionType from "../constants";
+import { URL_GET_COURSES } from "../urlAPI";
 export const actFetchCourses = () => (dispatch: Dispatch<any>) => {
   dispatch(getCoursesRequest());
   axios({
     url: URL_GET_COURSES,
-    method: 'GET',
+    method: "GET",
   })
     .then((res) => {
       console.log(res.data.data);
