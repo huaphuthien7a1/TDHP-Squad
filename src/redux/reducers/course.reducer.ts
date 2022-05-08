@@ -1,8 +1,4 @@
-import {
-  IListCourseState,
-  ICourseActionCreator,
-  ICourseActionTypes,
-} from 'models/ICourseState';
+import { IListCourseState, ICourseActionCreator } from 'models/ICourseState';
 import * as ActionType from '../constants';
 
 const initialState: IListCourseState = {
@@ -16,17 +12,11 @@ const courseReducer = (
 ) => {
   switch (type) {
     case ActionType.GET_COURSES_REQUEST:
-      state.isLoading = true;
-      state.listCourse = [];
-      return { ...state };
+      return { ...state, isLoading: true, listCourse: [] };
     case ActionType.GET_COURSES_SUCCESS:
-      state.isLoading = false;
-      state.listCourse = payload.listCourse;
-      return { ...state };
+      return { ...state, isLoading: false, listCourse: payload.listCourse };
     case ActionType.GET_COURSES_FAIL:
-      state.isLoading = false;
-      state.listCourse = [];
-      return { ...state };
+      return { ...state, isLoading: false, listCourse: [] };
     default:
       return { ...state };
   }

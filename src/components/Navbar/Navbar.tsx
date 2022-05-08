@@ -1,6 +1,37 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+  const [isShow, setIsShow] = useState(false);
+  useEffect(() => {
+    const handleClick = (e: any) => {
+      const currentDropdown = e.target.closest('[data-dropdown]');
+      if (currentDropdown) {
+        setIsShow((pre) => !pre);
+      } else {
+        setIsShow(false);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    Swal.fire({
+      imageWidth: '400',
+      imageHeight: '100',
+      backdrop: 'none',
+      showCloseButton: true,
+      icon: 'success',
+      title: 'Logout success',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+    });
+  };
   return (
     <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2'>
       <Link to='/'>
@@ -41,18 +72,38 @@ const Navbar = () => {
         </div>
       </div>
       <div className='text-lg'>
-        <Link
-          to='/login'
-          className='border-2 border-black px-3 py-1 rounded bg-white hover:bg-slate-100 font-semibold text-center mr-3'
-        >
-          <span>Log in</span>
-        </Link>
-        <Link
-          to='/register'
-          className='border-2 border-black px-3 py-1 rounded bg-slate-800 hover:bg-slate-900 font-semibold text-center text-white'
-        >
-          <span>Sign Up</span>
-        </Link>
+        {!localStorage.getItem('token') ? (
+          <>
+            <Link
+              to='/login'
+              className='border-2 border-black px-3 py-1 rounded bg-white hover:bg-slate-100 font-semibold text-center mr-3'
+            >
+              <span>Log in</span>
+            </Link>
+            <Link
+              to='/register'
+              className='border-2 border-black px-3 py-1 rounded bg-slate-800 hover:bg-slate-900 font-semibold text-center text-white'
+            >
+              <span>Sign Up</span>
+            </Link>
+          </>
+        ) : (
+          <>
+            <div className='flex items-center relative' data-dropdown>
+              <i className='fas fa-user p-2 rounded-full border-2 border-black bg-white hover:bg-slate-100 mr-3'></i>
+              <p className='italic cursor-pointer'>Welcome</p>
+              <ul
+                className={`absolute bottom-[-150%] left-[35%] text-left rounded-lg shadow-lg z-[100] bg-white p-3 ${
+                  isShow ? 'block' : 'hidden'
+                }`}
+              >
+                <li onClick={handleLogout} className='cursor-pointer'>
+                  Logout
+                </li>
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
