@@ -2,13 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actFetchCourses } from 'redux/actions/course.action';
-import IListCourseState from 'models/IRootState';
+import IRootState from 'models/IRootState';
 
 const CoursesPage: FC = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
   const { isLoading, listCourse } = useSelector(
-    (state: IListCourseState) => state.courseReducer
+    (state: IRootState) => state.courseReducer
   );
   useEffect(() => {
     dispatch(actFetchCourses() as any);
