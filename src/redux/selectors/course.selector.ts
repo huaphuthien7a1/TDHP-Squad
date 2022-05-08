@@ -4,11 +4,11 @@ import { createSelector } from 'reselect';
 import IRootState from 'models/IRootState';
 
 export const listCartSelector = createSelector(
-  (state: IRootState) => state.cart,
-  (app) => app.listCart
+  (state: IRootState) => state.course,
+  (app) => app.listCourse
 );
 
 export const isLoadingListCartSelector = createSelector(
-  (state: IRootState) => state.cart,
+  (state: IRootState) => state.course,
   (app) => app.isLoading
 );

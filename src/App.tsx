@@ -1,7 +1,7 @@
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import PageNotFound from './containers/PageNotFound';
-import { routesHome, routesAdmin } from './routes';
+import { routesHome } from './routes';
 import HomeTemplate from './containers/HomeTemplate';
 import AdminTemplate from './containers/AdminTemplate';
 import './App.css';
@@ -42,7 +42,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         {renderRoutesHome(routesHome)}
-        {renderRoutesAdmin(routesAdmin)}
+        {/* {renderRoutesAdmin(routesAdmin)} */}
         <Route path='/login' component={LoginPage}></Route>
         <Route path='/register' component={RegisterPage}></Route>
         <Route path='' component={PageNotFound}></Route>

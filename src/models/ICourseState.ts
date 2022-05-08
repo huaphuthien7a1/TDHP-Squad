@@ -1,4 +1,4 @@
-export enum ICartActionTypes {
+export enum ICourseActionTypes {
   GET_COURSES_REQUEST = 'GET_COURSES_REQUEST',
   GET_COURSES_SUCCESS = 'GET_COURSES_SUCCESS',
   GET_COURSES_FAIL = 'GET_COURSES_FAIL',
@@ -18,7 +18,7 @@ export type IListCourseState = {
   listCourse: any;
 };
 
-export type ICartActionCreator = {
+export type ICourseActionCreator = {
   type: string;
-  payload: ICourseState;
+  payload: IListCourseState;
 };

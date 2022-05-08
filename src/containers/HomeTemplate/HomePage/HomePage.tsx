@@ -1,5 +1,9 @@
 import Banner from 'components/Banner';
+import { useEffect } from 'react';
+import { act } from 'react-dom/test-utils';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actFetchCourses } from 'redux/actions/course.action';
 
 const pakeCourses = [
   {
@@ -121,10 +125,14 @@ const pakeLearningPaths = [
 ];
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actFetchCourses());
+  }, []);
   const renderCourses = () => {
-    return pakeCourses.map((course) => {
+    return pakeCourses.map((course, index) => {
       return (
-        <Link to={`/course/${course.name}`}>
+        <Link to={`/course/${course.name}`} key={index}>
           <div className='max-w-sm rounded overflow-hidden shadow-lg'>
             <img
               className='w-full'
@@ -141,9 +149,9 @@ const HomePage = () => {
     });
   };
   const renderLearningPaths = () => {
-    return pakeLearningPaths.map((learningPath) => {
+    return pakeLearningPaths.map((learningPath, index) => {
       return (
-        <Link to={`/learning-path/${learningPath.name}`}>
+        <Link to={`/learning-path/${learningPath.name}`} key={index}>
           <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
             {learningPath.name}
           </div>

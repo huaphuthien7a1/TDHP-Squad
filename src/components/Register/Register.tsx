@@ -1,21 +1,16 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import Swal from "sweetalert2";
-import "./Responsive.scss";
-import { URL_SIGN_UP } from "redux/urlAPI";
-=======
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import './Responsive.scss';
->>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
+import { URL_SIGN_UP } from 'redux/urlAPI';
 
 const Register = () => {
+  const history = useHistory();
   const [user, setUser] = useState({
-    username: "",
+    username: '',
     // email: "",
-    password: "",
+    password: '',
   });
 
   const onChangeInput = (e: any) => {
@@ -33,33 +28,34 @@ const Register = () => {
     };
     try {
       const res = await axios({
-        method: "POST",
+        method: 'POST',
         url: URL_SIGN_UP,
         data: form_data,
       });
-      localStorage.setItem("firstLogin", String(true));
-      console.log("register success", res.data);
-      localStorage.setItem("token", JSON.stringify(res.data.token));
-      localStorage.setItem("listCart", JSON.stringify([]));
+      localStorage.setItem('firstLogin', String(true));
+      console.log('register success', res.data);
+      localStorage.setItem('token', JSON.stringify(res.data.token));
       Swal.fire({
-        title: "Congratulation. You have successfully registered ^^",
-        icon: "success",
+        title: res.data.message,
+        icon: 'success',
         timer: 2500,
         imageHeight: 100,
         imageWidth: 400,
-        backdrop: "none",
-        closeButtonHtml: "OK",
+        backdrop: 'none',
+        closeButtonHtml: 'OK',
       });
-      window.location.href = "/";
-    } catch (err: any) {
+      history.replace('/');
+    } catch (error: any) {
       Swal.fire({
-        title: err.message,
-        icon: "error",
-        imageHeight: 100,
-        imageWidth: 400,
-        backdrop: "none",
-        closeButtonHtml: "OK",
+        imageWidth: '400',
+        imageHeight: '100',
+        backdrop: 'none',
+        showCloseButton: true,
+        icon: 'error',
+        title: error.response.data.message,
+        showConfirmButton: false,
         timer: 2500,
+        timerProgressBar: true,
       });
     }
   };
@@ -73,67 +69,31 @@ const Register = () => {
         <h2 className='signup__desc text-base font-semibold relative pl-32 text-primary mb-10 before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-28 before:h-[2px] before:rounded-sm before:bg-primary '>
           Welcome to THDP Squad
         </h2>
-<<<<<<< HEAD
         <form
           onSubmit={registerSubmit}
-          autoComplete="off"
-          id="signup__form"
-          className="signup__form"
+          autoComplete='off'
+          id='signup__form'
+          className='signup__form'
         >
-          <div className="signup__information flex flex-wrap justify-between">
-            <div className="signup__name w-full mb-4">
-              <label
-                htmlFor="username"
-                className="signup__label block text-lg color-[#263238] cursor-pointer mb-4"
-=======
-        {/* <div className="signup-social flex justify-between flex-wrap">
-          <Link
-            to="#"
-            className="flex justify-around mb-20 w-[calc(50%-1rem) p-6 border-2 border-solid border-gray-300 rounded-2xl text-[#263238] text-2xl font-semibold"
-          >
-            <i className="fab fa-google signup-social__icon"></i>
-            <span className="signup-social__desc">Sign up with Google</span>
-          </Link>
-          <Link
-            to="#"
-            className="flex justify-around mb-20 w-[calc(50%-1rem) p-6 border-2 border-solid border-gray-300 rounded-2xl text-[#263238] text-2xl font-semibold"
-          >
-            <i className="fab fa-facebook signup-social__icon"></i>
-            <span className="signup-social__desc">Sign up with Facebook</span>
-          </Link>
-        </div> */}
-        <form autoComplete='off' id='signup__form' className='signup__form'>
           <div className='signup__information flex flex-wrap justify-between'>
             <div className='signup__name w-full mb-4'>
               <label
-                htmlFor='name'
+                htmlFor='username'
                 className='signup__label block text-lg color-[#263238] cursor-pointer mb-4'
->>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
               >
                 User name
               </label>
               <input
-<<<<<<< HEAD
-                type="text"
-                id="username"
-                placeholder=""
-                className="signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary"
+                type='text'
+                id='username'
+                placeholder=''
+                className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
                 defaultValue={user.username}
                 onChange={onChangeInput}
                 required
               />
             </div>
             {/* <div className="signup__email w-full mb-4">
-=======
-                type='text'
-                id='name'
-                placeholder=''
-                className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
-                required
-              />
-            </div>
-            <div className='signup__email w-full mb-4'>
->>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
               <label
                 htmlFor='email'
                 className='signup__label block text-lg color-[#263238] cursor-pointer mb-4'
@@ -141,7 +101,6 @@ const Register = () => {
                 Email
               </label>
               <input
-<<<<<<< HEAD
                 type="email"
                 id="email"
                 placeholder=""
@@ -151,17 +110,7 @@ const Register = () => {
                 required
               />
             </div> */}
-            <div className="signup__password w-full mb-4">
-=======
-                type='email'
-                id='email'
-                placeholder=''
-                className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
-                required
-              />
-            </div>
             <div className='signup__password w-full mb-4'>
->>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
               <label
                 htmlFor='password'
                 className='signup__label block text-lg color-[#263238] cursor-pointer mb-4'
@@ -169,19 +118,12 @@ const Register = () => {
                 Password
               </label>
               <input
-<<<<<<< HEAD
-                type="password"
-                id="password"
-                placeholder=""
-                className="signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary"
-                defaultValue={user.password}
-                onChange={onChangeInput}
-=======
                 type='password'
                 id='password'
                 placeholder=''
                 className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
->>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
+                defaultValue={user.password}
+                onChange={onChangeInput}
                 required
               />
             </div>

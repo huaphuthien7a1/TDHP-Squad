@@ -1,48 +1,42 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import * as ActionType from '../constants';
-import { URL_GET_LIST_CART_ITEM, URL_ADD_ORDER } from '../urlAPI';
-export const actFetchCourses = () => {};
-// export const actFetchListCartItem = () => {
-//   return (dispatch) => {
-//     dispatch(actGetListCartItemRequest());
-//     const token = JSON.parse(localStorage.getItem('token'));
-//     axios({
-//       url: URL_GET_LIST_CART_ITEM,
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${token.accessToken}`,
-//       },
-//     })
-//       .then((res) => {
-//         console.log(res.data[0]);
-//         if (res.data[0])
-//           dispatch(actGetListCartItemSuccess(res.data[0].products));
-//         else dispatch(actGetListCartItemSuccess([]));
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//         dispatch(actGetListCartItemFailed(error));
-//       });
-//   };
-// };
+import { URL_GET_COURSES } from '../urlAPI';
+export const actFetchCourses = () => (dispatch: Dispatch<any>) => {
+  dispatch(getCoursesRequest());
+  console.log(1);
+  axios({
+    url: URL_GET_COURSES,
+    method: 'GET',
+  })
+    .then((res) => {
+      console.log(res.data.data);
+      dispatch(getCoursesSuccess(res.data.data));
+    })
+    .catch((error) => {
+      console.log(error.response.data.message);
+      dispatch(getCoursesFail());
+    });
+  //   try {
+  //     const res = await axios({
+  //       url: URL_GET_COURSES,
+  //       method: 'GET',
+  //     });
+  //     console.log(res.data);
+  //     dispatch(getCoursesSuccess(res.data.data));
+  //   } catch (error: any) {
+  //     console.log(error.response.data.message);
+  //     dispatch(getCoursesFail());
+  //   }
+};
 
-// const actGetListCartItemRequest = () => {
-//   return { type: ActionType.GET_LIST_CART_ITEM_REQUEST };
-// };
-// export const actGetListCartItemSuccess = (data) => {
-//   return { type: ActionType.GET_LIST_CART_ITEM_SUCCESS, payload: data };
-// };
-// const actGetListCartItemFailed = (error) => {
-//   return { type: ActionType.GET_LIST_CART_ITEM_FAILED, payload: error };
-// };
-// //----------------------------------------------
 const getCoursesRequest = () => {
   return { type: ActionType.GET_COURSES_REQUEST };
 };
-const getCoursesSuccess = (courses: any) => {
+const getCoursesSuccess = (listCourse: any) => {
   return {
     type: ActionType.GET_COURSES_SUCCESS,
-    payload: { isLoading: false, courses },
+    payload: { isLoading: false, listCourse },
   };
 };
 const getCoursesFail = () => {
