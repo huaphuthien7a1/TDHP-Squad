@@ -9,3 +9,4 @@ export const URL_SIGN_IN = `${process.env.BASE_URL}/auth/login`;
 export const URL_SIGN_UP = `${process.env.BASE_URL}/auth/register`;
 export const URL_ADD_ORDER = `${process.env.BASE_URL}/order/add-order`;
 export const URL_UPDATE_CART = `${process.env.BASE_URL}/cart/update-cart`;
+export const URL_GET_COURSE = `${process.env.BASE_URL}/course`;
