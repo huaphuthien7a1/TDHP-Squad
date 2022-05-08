@@ -1,3 +1,4 @@
+import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import Sidebar from 'components/Sidebar';
 import React, { FunctionComponent } from 'react';
@@ -10,11 +11,14 @@ interface PrivateRouteProps extends RouteProps {
 
 function LayoutHome({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <>
+    <div className='h-screen'>
       <Navbar />
       <Sidebar />
-      <div className='p-6 mt-[64px] ml-[160px]'>{children}</div>
-    </>
+      <div className='flex flex-col justify-between h-full'>
+        <div className='p-6 mt-[64px] ml-[160px]'>{children}</div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 const HomeTemplate: FunctionComponent<PrivateRouteProps> = ({
