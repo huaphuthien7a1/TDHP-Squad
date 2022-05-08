@@ -9,7 +9,6 @@ const sidebarItems: { url: string; content: string }[] = [
 
 const Sidebar = () => {
   let location = useLocation();
-  console.log(location);
   const renderSidebarItems = () =>
     sidebarItems.map((item) => (
       <Link to={item.url} key={item.content}>
@@ -18,7 +17,7 @@ const Sidebar = () => {
             location.pathname.indexOf(item.url) !== -1
               ? 'bg-slate-200'
               : 'bg-white'
-          } hover:bg-slate-200 rounded-xl`}
+          } hover:bg-slate-200 rounded-xl ease-out duration-300`}
         >
           {item.content}
         </div>
