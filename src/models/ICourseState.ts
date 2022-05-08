@@ -9,11 +9,8 @@ export type ICourseState = {
   description: string;
   views: number;
   rating: number;
-  thumbnail: {
-    url: string;
-    id: string;
-  };
-  pdf: { url: string; id: string };
+  thumbnail: any;
+  videos: any;
 };
 
 export type IListCourseState = {
