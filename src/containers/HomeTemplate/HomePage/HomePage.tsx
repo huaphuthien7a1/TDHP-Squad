@@ -127,7 +127,7 @@ const pakeLearningPaths = [
 const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actFetchCourses());
+    dispatch(actFetchCourses() as any);
   }, []);
   const renderCourses = () => {
     return pakeCourses.map((course, index) => {
