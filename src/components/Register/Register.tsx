@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./Responsive.scss";
 import { URL_SIGN_UP } from "redux/urlAPI";
 
 const Register = () => {
+  const history = useHistory();
   const [user, setUser] = useState({
     username: "",
     // email: "",
@@ -34,9 +35,8 @@ const Register = () => {
       localStorage.setItem("firstLogin", String(true));
       console.log("register success", res.data);
       localStorage.setItem("token", JSON.stringify(res.data.token));
-      localStorage.setItem("listCart", JSON.stringify([]));
       Swal.fire({
-        title: "Congratulation. You have successfully registered ^^",
+        title: res.data.message,
         icon: "success",
         timer: 2500,
         imageHeight: 100,
@@ -44,27 +44,29 @@ const Register = () => {
         backdrop: "none",
         closeButtonHtml: "OK",
       });
-      window.location.href = "/";
-    } catch (err: any) {
+      history.replace("/");
+    } catch (error: any) {
       Swal.fire({
-        title: err.message,
-        icon: "error",
-        imageHeight: 100,
-        imageWidth: 400,
+        imageWidth: "400",
+        imageHeight: "100",
         backdrop: "none",
-        closeButtonHtml: "OK",
+        showCloseButton: true,
+        icon: "error",
+        title: error.response.data.message,
+        showConfirmButton: false,
         timer: 2500,
+        timerProgressBar: true,
       });
     }
   };
 
   return (
-    <div className='signup w-full bg-white rounded-[3rem] flex justify-between'>
-      <div className='signup__left w-[calc(50%-2rem)] py-16 px-[4.5rem]'>
-        <h1 className='signup__title text-6xl font-bold text-[#263238] mb-9'>
+    <div className="signup w-full bg-white rounded-[3rem] flex justify-between">
+      <div className="signup__left w-[calc(50%-2rem)] py-16 px-[4.5rem]">
+        <h1 className="signup__title text-6xl font-bold text-[#263238] mb-9">
           Register
         </h1>
-        <h2 className='signup__desc text-base font-semibold relative pl-32 text-primary mb-10 before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-28 before:h-[2px] before:rounded-sm before:bg-primary '>
+        <h2 className="signup__desc text-base font-semibold relative pl-32 text-primary mb-10 before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-28 before:h-[2px] before:rounded-sm before:bg-primary ">
           Welcome to THDP Squad
         </h2>
         <form
@@ -110,8 +112,8 @@ const Register = () => {
             </div> */}
             <div className="signup__password w-full mb-4">
               <label
-                htmlFor='password'
-                className='signup__label block text-lg color-[#263238] cursor-pointer mb-4'
+                htmlFor="password"
+                className="signup__label block text-lg color-[#263238] cursor-pointer mb-4"
               >
                 Password
               </label>
@@ -126,41 +128,41 @@ const Register = () => {
               />
             </div>
           </div>
-          <div className='signup__term'>
+          <div className="signup__term">
             <input
-              type='checkbox'
-              id='checkbox'
-              className='signup__checkbox hidden peer'
+              type="checkbox"
+              id="checkbox"
+              className="signup__checkbox hidden peer"
               required
             />
             <label
-              htmlFor='checkbox'
-              className='signup__label .signup__label--checkbox block text-lg color-[#263238] cursor-pointer relative pl-16 leading-relaxed before:absolute before:top-0 before:left-0 before:w-8 before:h-8 before:border-2 before:border-solid before:border-gray-300 before:rounded-xl before:transition-all before:duration-200 before:ease-linear peer-checked:before:bg-primary peer-checked:before:border-primary'
+              htmlFor="checkbox"
+              className="signup__label .signup__label--checkbox block text-lg color-[#263238] cursor-pointer relative pl-16 leading-relaxed before:absolute before:top-0 before:left-0 before:w-8 before:h-8 before:border-2 before:border-solid before:border-gray-300 before:rounded-xl before:transition-all before:duration-200 before:ease-linear peer-checked:before:bg-primary peer-checked:before:border-primary"
             >
               I've read and agree with Terms of Service and Privacy Policy
             </label>
           </div>
           <button
-            type='submit'
-            form='signup__form'
-            value='Submit'
-            className='signup__button w-16 h-16 my-4 flex items-center justify-center bg-primary text-white border-0 rounded-3xl shadow-md cursor-pointer'
+            type="submit"
+            form="signup__form"
+            value="Submit"
+            className="signup__button w-16 h-16 my-4 flex items-center justify-center bg-primary text-white border-0 rounded-3xl shadow-md cursor-pointer"
           >
-            <i className='fas fa-arrow-right'></i>
+            <i className="fas fa-arrow-right"></i>
           </button>
         </form>
-        <div className='signup__redirect text-lg leading-relaxed'>
+        <div className="signup__redirect text-lg leading-relaxed">
           Already have an account?&nbsp;
-          <Link to='/login' className='text-primary'>
+          <Link to="/login" className="text-primary">
             Sign in
           </Link>
         </div>
       </div>
-      <div className='signup__right w-[calc(50%-2rem)] pr-[4.5rem] flex items-center'>
+      <div className="signup__right w-[calc(50%-2rem)] pr-[4.5rem] flex items-center">
         <img
-          src='./Startup life-pana.svg'
-          alt=''
-          className='block w-full object-cover'
+          src="./Startup life-pana.svg"
+          alt=""
+          className="block w-full object-cover"
         />
       </div>
     </div>

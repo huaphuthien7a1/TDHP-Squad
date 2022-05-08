@@ -1,6 +1,9 @@
 import Banner from 'components/Banner';
+import { useEffect, useState } from 'react';
+import { act } from 'react-dom/test-utils';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { actFetchCourses } from 'redux/actions/course.action';
 const pakeCourses = [
   {
     name: 'course 1',
@@ -121,14 +124,27 @@ const pakeLearningPaths = [
 ];
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const [courses, setCourses] = useState([]);
+  const { isLoading, listCourse } = useSelector(
+    (state: any) => state.courseReducer
+  );
+  useEffect(() => {
+    dispatch(actFetchCourses() as any);
+  }, []);
+  useEffect(() => {
+    setCourses(listCourse);
+  }, [listCourse]);
+  console.log('loading', isLoading);
+  console.log('listcourse', listCourse);
   const renderCourses = () => {
-    return pakeCourses.map((course) => {
+    return courses.map((course: any, index) => {
       return (
-        <Link to={`/course/${course.name}`}>
+        <Link to={`/course/${course._id}`} key={index}>
           <div className='max-w-sm rounded overflow-hidden shadow-lg'>
             <img
               className='w-full'
-              src={course.thumbnail}
+              src={course.thumbnail.url}
               alt='Sunset in the mountains'
             />
             <div className='px-6 py-4'>
@@ -141,9 +157,9 @@ const HomePage = () => {
     });
   };
   const renderLearningPaths = () => {
-    return pakeLearningPaths.map((learningPath) => {
+    return pakeLearningPaths.map((learningPath, index) => {
       return (
-        <Link to={`/learning-path/${learningPath.name}`}>
+        <Link to={`/learning-path/${learningPath.name}`} key={index}>
           <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
             {learningPath.name}
           </div>

@@ -1,26 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { URL_GET_COURSE } from "redux/urlAPI";
+import { useLocation } from "react-router-dom";
+import { URL_GET_COURSES } from "redux/urlAPI";
 
 const DetailCoursePage = () => {
-  // const [videoInfo, setVideoInfo] = useState({});
+  const location: any = useLocation();
+  const courseId = location.state?.courseId;
 
-  // useEffect(() => {
-  //   async function fetchVideoInfo() {
-  //     try {
-  //       const response = await axios.get(`${URL_GET_COURSE}/:id`);
-  //       const responseJSON = response.data;
+  const [videoInfo, setVideoInfo] = useState({});
 
-  //       setVideoInfo(responseJSON);
-  //     } catch (error: any) {
-  //       console.log("Failed to fetch course: ", error.message);
-  //     }
-  //   }
+  useEffect(() => {
+    async function fetchVideoInfo() {
+      try {
+        const response = await axios.get(`${URL_GET_COURSES}/${courseId}`);
+        const responseJSON = response.data;
 
-  //   fetchVideoInfo();
-  //   console.log(videoInfo);
-  // }, []);
+        setVideoInfo(responseJSON);
+      } catch (error: any) {
+        console.log("Failed to fetch course: ", error.message);
+      }
+    }
+
+    fetchVideoInfo();
+    console.log(videoInfo);
+  }, []);
 
   return (
     <div>

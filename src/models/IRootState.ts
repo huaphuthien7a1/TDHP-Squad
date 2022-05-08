@@ -1,7 +1,6 @@
-import { IListCartState } from './ICartState';
-
+import { IListCourseState } from './ICourseState';
 type IRootState = {
-  cart: IListCartState;
+  course: IListCourseState;
 };
 
 export default IRootState;

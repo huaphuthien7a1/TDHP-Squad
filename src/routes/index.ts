@@ -1,5 +1,4 @@
 import HomePage from '../containers/HomeTemplate/HomePage';
-import ManagePostPage from '../containers/AdminTemplate/ManagePostPage';
 import LearningPathsPage from 'containers/HomeTemplate/LearningPathsPage';
 import CoursesPage from 'containers/HomeTemplate/CoursesPage';
 import DetailCoursePage from 'containers/HomeTemplate/DetailCoursePage';
@@ -43,12 +42,6 @@ const routesHome = [
     component: CompetitionsPage,
   },
 ];
-const routesAdmin = [
-  {
-    exact: false,
-    path: '/manage-posts',
-    component: ManagePostPage,
-  },
-];
+// const routesAdmin = [];
 
-export { routesHome, routesAdmin };
+export { routesHome };
