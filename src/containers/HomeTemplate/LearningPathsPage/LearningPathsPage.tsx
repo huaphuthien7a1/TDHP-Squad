@@ -1,5 +1,8 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import IRootState from 'models/IRootState';
+import { actFetchLearningPaths } from 'redux/actions/learningPath.action';
 
 const pakeLearningPaths = [
   {
@@ -69,19 +72,32 @@ const pakeLearningPaths = [
 ];
 
 const LearningPathsPage: FC = () => {
+  const dispatch = useDispatch();
+  const [learningPaths, setLearningPaths] = useState([]);
+  const isLoadingLearningPaths = useSelector(
+    (state: IRootState) => state.learningPathReducer.isLoading
+  );
+  const listLearningPath = useSelector(
+    (state: IRootState) => state.learningPathReducer.listLearningPath
+  );
+  useEffect(() => {
+    dispatch(actFetchLearningPaths() as any);
+  }, []);
+  useEffect(() => {
+    setLearningPaths(listLearningPath);
+  }, [listLearningPath]);
   const renderLearningPaths = () => {
-    return pakeLearningPaths.map((learningPath) => {
+    return learningPaths.map((learningPath: any) => {
       return (
-        <Link to={`/learning-path/${learningPath.name}`}>
+        <Link to={`/learning-path/${learningPath._id}`} key={learningPath._id}>
           <div className='max-w-sm w-full lg:max-w-full lg:flex my-4'>
             <div
               className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center'
-              style={{ backgroundImage: `url(${learningPath.thumbnail})` }}
+              style={{ backgroundImage: `url(${learningPath.thumbnail.url})` }}
               title='Woman holding a mug'
             ></div>
             <div className='w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal'>
               <div className='mb-8'>
-                <p className='text-sm text-gray-600 flex items-center'>Free</p>
                 <div className='text-gray-900 font-bold text-xl mb-2'>
                   {learningPath.name}
                 </div>
@@ -89,7 +105,7 @@ const LearningPathsPage: FC = () => {
               <div className='flex items-center'>
                 <img
                   className='w-10 h-10 rounded-full mr-4'
-                  src={learningPath.thumbnail}
+                  src={learningPath.thumbnail.url}
                   alt='Avatar of Jonathan Reinink'
                 />
                 <div className='text-sm'>

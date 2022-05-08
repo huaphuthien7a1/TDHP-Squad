@@ -7,73 +7,6 @@ import { actFetchCourses } from 'redux/actions/course.action';
 import { actFetchLearningPaths } from 'redux/actions/learningPath.action';
 import IRootState from 'models/IRootState';
 
-const pakeLearningPaths = [
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-  {
-    name: 'learning path 1',
-    rating: 5,
-    isProCourse: false,
-    courses: ['course 1', 'course 2'],
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-  },
-];
-
 const HomePage = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
@@ -100,8 +33,6 @@ const HomePage = () => {
   useEffect(() => {
     setLearningPaths(listLearningPath);
   }, [listLearningPath]);
-  console.log('loading', isLoadingCourses || isLoadingLearningPaths);
-  console.log(listLearningPath);
 
   const renderCourses = () => {
     return courses.map((course: any, index) => {
