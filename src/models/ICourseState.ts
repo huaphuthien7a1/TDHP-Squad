@@ -1,0 +1,27 @@
+export enum ICartActionTypes {
+  GET_COURSES_REQUEST = 'GET_COURSES_REQUEST',
+  GET_COURSES_SUCCESS = 'GET_COURSES_SUCCESS',
+  GET_COURSES_FAIL = 'GET_COURSES_FAIL',
+}
+
+export type ICourseState = {
+  name: string;
+  description: string;
+  views: number;
+  rating: number;
+  thumbnail: {
+    url: string;
+    id: string;
+  };
+  pdf: { url: string; id: string };
+};
+
+export type IListCourseState = {
+  isLoading: boolean;
+  listCourse: any;
+};
+
+export type ICartActionCreator = {
+  type: string;
+  payload: ICourseState;
+};
