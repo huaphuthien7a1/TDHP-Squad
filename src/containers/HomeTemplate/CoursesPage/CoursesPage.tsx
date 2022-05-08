@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { actFetchCourses } from 'redux/actions/course.action';
-import IListCourseState from 'models/IRootState';
+import { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { actFetchCourses } from "redux/actions/course.action";
+import { IListCourseState } from "models/ICourseState";
 
 const CoursesPage: FC = () => {
   const dispatch = useDispatch();
