@@ -4,58 +4,9 @@ import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actFetchCourses } from 'redux/actions/course.action';
-const pakeCourses = [
-  {
-    name: 'course 1',
-    description: 'Course 1 description',
-    views: 10,
-    rating: 5,
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-    pdf: '',
-    video: '',
-  },
-  {
-    name: 'course 2',
-    description: 'Course 2 description',
-    views: 10,
-    rating: 5,
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-    pdf: '',
-    video: '',
-  },
-  {
-    name: 'course 3',
-    description: 'Course 3 description',
-    views: 10,
-    rating: 5,
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-    pdf: '',
-    video: '',
-  },
-  {
-    name: 'course 4',
-    description: 'Course 5 description',
-    views: 10,
-    rating: 5,
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-    pdf: '',
-    video: '',
-  },
-  {
-    name: 'course 1',
-    description: 'Course 1 description',
-    views: 10,
-    rating: 5,
-    thumbnail:
-      'https://media.istockphoto.com/photos/flying-color-books-on-pastel-yellow-background-picture-id1304915362?b=1&k=20&m=1304915362&s=170667a&w=0&h=1oBLMT9JLYt6Ju3LbSppu8Fga92YfvSHiPu7zQlculg=',
-    pdf: '',
-    video: '',
-  },
-];
+import { actFetchLearningPaths } from 'redux/actions/learningPath.action';
+import IRootState from 'models/IRootState';
+
 const pakeLearningPaths = [
   {
     name: 'learning path 1',
@@ -126,17 +77,32 @@ const pakeLearningPaths = [
 const HomePage = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
-  const { isLoading, listCourse } = useSelector(
-    (state: any) => state.courseReducer
+  const [learningPaths, setLearningPaths] = useState([]);
+  const isLoadingCourses = useSelector(
+    (state: IRootState) => state.courseReducer.isLoading
+  );
+  const listCourse = useSelector(
+    (state: IRootState) => state.courseReducer.listCourse
+  );
+  const isLoadingLearningPaths = useSelector(
+    (state: IRootState) => state.learningPathReducer.isLoading
+  );
+  const listLearningPath = useSelector(
+    (state: IRootState) => state.learningPathReducer.listLearningPath
   );
   useEffect(() => {
     dispatch(actFetchCourses() as any);
+    dispatch(actFetchLearningPaths() as any);
   }, []);
   useEffect(() => {
     setCourses(listCourse);
   }, [listCourse]);
-  console.log('loading', isLoading);
-  console.log('listcourse', listCourse);
+  useEffect(() => {
+    setLearningPaths(listLearningPath);
+  }, [listLearningPath]);
+  console.log('loading', isLoadingCourses || isLoadingLearningPaths);
+  console.log(listLearningPath);
+
   const renderCourses = () => {
     return courses.map((course: any, index) => {
       return (
@@ -157,9 +123,9 @@ const HomePage = () => {
     });
   };
   const renderLearningPaths = () => {
-    return pakeLearningPaths.map((learningPath, index) => {
+    return learningPaths?.map((learningPath: any) => {
       return (
-        <Link to={`/learning-path/${learningPath.name}`} key={index}>
+        <Link to={`/learning-path/${learningPath._id}`} key={learningPath._id}>
           <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
             {learningPath.name}
           </div>

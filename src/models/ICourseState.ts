@@ -1,9 +1,3 @@
-export enum ICourseActionTypes {
-  GET_COURSES_REQUEST = 'GET_COURSES_REQUEST',
-  GET_COURSES_SUCCESS = 'GET_COURSES_SUCCESS',
-  GET_COURSES_FAIL = 'GET_COURSES_FAIL',
-}
-
 export type ICourseState = {
   name: string;
   description: string;

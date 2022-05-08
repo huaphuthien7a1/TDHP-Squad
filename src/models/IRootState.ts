@@ -1,6 +1,8 @@
 import { IListCourseState } from './ICourseState';
+import { IListLearningPathState } from './ILearningPathState';
 type IRootState = {
-  course: IListCourseState;
+  courseReducer: IListCourseState;
+  learningPathReducer: IListLearningPathState;
 };
 
 export default IRootState;

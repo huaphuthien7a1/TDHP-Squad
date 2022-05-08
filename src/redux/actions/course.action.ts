@@ -16,17 +16,6 @@ export const actFetchCourses = () => (dispatch: Dispatch<any>) => {
       console.log(error.response.data.message);
       dispatch(getCoursesFail());
     });
-  //   try {
-  //     const res = await axios({
-  //       url: URL_GET_COURSES,
-  //       method: 'GET',
-  //     });
-  //     console.log(res.data);
-  //     dispatch(getCoursesSuccess(res.data.data));
-  //   } catch (error: any) {
-  //     console.log(error.response.data.message);
-  //     dispatch(getCoursesFail());
-  //   }
 };
 
 const getCoursesRequest = () => {
