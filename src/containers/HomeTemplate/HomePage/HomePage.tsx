@@ -1,10 +1,9 @@
 import Banner from 'components/Banner';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actFetchCourses } from 'redux/actions/course.action';
-
 const pakeCourses = [
   {
     name: 'course 1',
@@ -126,17 +125,26 @@ const pakeLearningPaths = [
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const [courses, setCourses] = useState([]);
+  const { isLoading, listCourse } = useSelector(
+    (state: any) => state.courseReducer
+  );
   useEffect(() => {
     dispatch(actFetchCourses() as any);
   }, []);
+  useEffect(() => {
+    setCourses(listCourse);
+  }, [listCourse]);
+  console.log('loading', isLoading);
+  console.log('listcourse', listCourse);
   const renderCourses = () => {
-    return pakeCourses.map((course, index) => {
+    return courses.map((course: any, index) => {
       return (
-        <Link to={`/course/${course.name}`} key={index}>
+        <Link to={`/course/${course._id}`} key={index}>
           <div className='max-w-sm rounded overflow-hidden shadow-lg'>
             <img
               className='w-full'
-              src={course.thumbnail}
+              src={course.thumbnail.url}
               alt='Sunset in the mountains'
             />
             <div className='px-6 py-4'>

@@ -4,7 +4,6 @@ import * as ActionType from '../constants';
 import { URL_GET_COURSES } from '../urlAPI';
 export const actFetchCourses = () => (dispatch: Dispatch<any>) => {
   dispatch(getCoursesRequest());
-  console.log(1);
   axios({
     url: URL_GET_COURSES,
     method: 'GET',
