@@ -5,7 +5,7 @@ import {
   RouteComponentProps,
   Redirect,
 } from 'react-router-dom';
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 interface PrivateRouteProps extends RouteProps {
   component:

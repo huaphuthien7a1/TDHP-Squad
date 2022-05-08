@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 drop-shadow-lg'>
+    <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2'>
       <Link to='/'>
-        <h1 className='text-3xl font-bold'>TDHP</h1>
+        <h1 className='text-5xl font-bold text-secondary'>TDHP</h1>
       </Link>
       <div className='flex justify-center'>
         <div className='xl:w-96'>
@@ -17,7 +17,7 @@ const Navbar = () => {
               aria-describedby='button-addon2'
             />
             <button
-              className='rounded-r-lg btn inline-block px-6 py-2.5 bg-zinc-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-zinc-800 hover:shadow-lg focus:bg-zinc-800  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-zinc-700 active:shadow-lg transition duration-150 ease-in-out flex items-center'
+              className='rounded-r-lg btn inline-block px-6 py-2.5 bg-slate-800 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-slate-900 hover:shadow-lg focus:bg-slate-900  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-700 active:shadow-lg transition duration-150 ease-in-out flex items-center'
               type='button'
               id='button-addon2'
             >
@@ -40,13 +40,18 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Link to='/register' className='hover:opacity-75'>
-          <span>Đăng ký</span>
-        </Link>{' '}
-        /{' '}
-        <Link to='/login' className='hover:opacity-75'>
-          <span>Đăng nhập</span>
+      <div className='text-lg'>
+        <Link
+          to='/login'
+          className='border-2 border-black px-3 py-1 rounded bg-white hover:bg-slate-100 font-semibold text-center mr-3'
+        >
+          <span>Log in</span>
+        </Link>
+        <Link
+          to='/register'
+          className='border-2 border-black px-3 py-1 rounded bg-slate-800 hover:bg-slate-900 font-semibold text-center text-white'
+        >
+          <span>Sign Up</span>
         </Link>
       </div>
     </div>
