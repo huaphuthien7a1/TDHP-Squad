@@ -1,4 +1,5 @@
 import Banner from 'components/Banner';
+import Spinner from 'components/Spinner';
 import { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,34 +36,49 @@ const HomePage = () => {
   }, [listLearningPath]);
 
   const renderCourses = () => {
-    return courses.map((course: any, index) => {
-      return (
-        <Link to={`/course/${course._id}`} key={index}>
-          <div className='max-w-sm rounded overflow-hidden shadow-lg'>
-            <img
-              className='w-full'
-              src={course.thumbnail.url}
-              alt='Sunset in the mountains'
-            />
-            <div className='px-6 py-4'>
-              <div className='font-bold text-xl mb-2'>{course.name}</div>
-              <p className='text-gray-700 text-base'>{course.description}</p>
-            </div>
-          </div>
-        </Link>
-      );
-    });
+    if (isLoadingCourses) return <Spinner />;
+    return (
+      <div className='grid grid-cols-4 gap-4 mt-4'>
+        {courses.map((course: any, index) => {
+          return (
+            <Link to={`/course/${course._id}`} key={index}>
+              <div className='max-w-sm rounded overflow-hidden shadow-lg'>
+                <img
+                  className='w-full'
+                  src={course.thumbnail.url}
+                  alt='Sunset in the mountains'
+                />
+                <div className='px-6 py-4'>
+                  <div className='font-bold text-xl mb-2'>{course.name}</div>
+                  <p className='text-gray-700 text-base'>
+                    {course.description}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    );
   };
   const renderLearningPaths = () => {
-    return learningPaths?.map((learningPath: any) => {
-      return (
-        <Link to={`/learning-path/${learningPath._id}`} key={learningPath._id}>
-          <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
-            {learningPath.name}
-          </div>
-        </Link>
-      );
-    });
+    if (isLoadingLearningPaths) return <Spinner />;
+    return (
+      <div className='grid grid-cols-4 gap-4 mt-4'>
+        {learningPaths?.map((learningPath: any) => {
+          return (
+            <Link
+              to={`/learning-path/${learningPath._id}`}
+              key={learningPath._id}
+            >
+              <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
+                {learningPath.name}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    );
   };
   return (
     <div>
@@ -70,12 +86,13 @@ const HomePage = () => {
       <Link to='/course'>
         <h1 className='text-3xl mt-4 font-bold'>COURSES</h1>
       </Link>
-      <div className='grid grid-cols-4 gap-4 mt-4'>{renderCourses()}</div>
+      <div className='min-h-[350px]'>{renderCourses()}</div>
+
       <Link to='/learning-path'>
         <h1 className='text-3xl mt-4 font-bold'>LEARNING PATH</h1>
       </Link>
 
-      <div className='grid grid-cols-4 gap-4 mt-4'>{renderLearningPaths()}</div>
+      <div className='min-h-[350px]'>{renderLearningPaths()}</div>
     </div>
   );
 };
