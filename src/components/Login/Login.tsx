@@ -1,9 +1,79 @@
+<<<<<<< HEAD
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import "./Responsive.scss";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { URL_GET_LIST_CART_ITEM, URL_SIGN_IN } from "redux/urlAPI";
+import Swal from "sweetalert2";
+
+const Login = (props: any) => {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const onChangeInput = (e: any) => {
+    const { id, value } = e.target;
+    setUser({ ...user, [id]: value });
+  };
+
+  const loginSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log({ ...user });
+    try {
+      const res = await axios({
+        method: "POST",
+        url: URL_SIGN_IN,
+        data: { ...user },
+      });
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+      console.log("login success");
+      const cart = await axios({
+        url: URL_GET_LIST_CART_ITEM,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${res.data.token.accessToken}`,
+        },
+      });
+      if (!cart.data[0]) localStorage.setItem("listCart", JSON.stringify([]));
+      else
+        localStorage.setItem("listCart", JSON.stringify(cart.data[0].products));
+      Swal.fire({
+        imageWidth: "400",
+        imageHeight: "100",
+        backdrop: "none",
+        showCloseButton: true,
+        icon: "success",
+        title: "Login success!",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+      });
+      props.history.replace("/");
+    } catch (err) {
+      Swal.fire({
+        imageWidth: "400",
+        imageHeight: "100",
+        backdrop: "none",
+        showCloseButton: true,
+        icon: "error",
+        title: "User account or password incorrect :((",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+      });
+    }
+  };
+=======
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Responsive.scss';
+>>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
 
-const Login = () => {
   return (
     <div className='signup w-full bg-white rounded-[3rem] flex justify-between'>
       <div className='signup__left w-[calc(50%-2rem)] py-16 px-[4.5rem]'>
@@ -13,20 +83,42 @@ const Login = () => {
         <h2 className='signup__desc text-base font-semibold relative pl-32 text-primary mb-10 before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 before:w-28 before:h-[2px] before:rounded-sm before:bg-primary '>
           Enjoy the life
         </h2>
+<<<<<<< HEAD
+        <form
+          onSubmit={loginSubmit}
+          autoComplete="off"
+          id="signup__form"
+          className="signup__form"
+        >
+          <div className="signup__information flex flex-wrap justify-between">
+            <div className="signup__email w-full mb-4">
+              <label
+                htmlFor="username"
+                className="signup__label block text-lg color-[#263238] cursor-pointer mb-4"
+=======
         <form autoComplete='off' id='signup__form' className='signup__form'>
           <div className='signup__information flex flex-wrap justify-between'>
             <div className='signup__email w-full mb-4'>
               <label
                 htmlFor='email'
                 className='signup__label block text-lg color-[#263238] cursor-pointer mb-4'
+>>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
               >
-                Email
+                User name
               </label>
               <input
+<<<<<<< HEAD
+                type="text"
+                id="username"
+                placeholder=""
+                className="signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary"
+                onChange={onChangeInput}
+=======
                 type='email'
                 id='email'
                 placeholder=''
                 className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
+>>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
                 required
               />
             </div>
@@ -38,10 +130,18 @@ const Login = () => {
                 Password
               </label>
               <input
+<<<<<<< HEAD
+                type="password"
+                id="password"
+                placeholder=""
+                className="signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary"
+                onChange={onChangeInput}
+=======
                 type='password'
                 id='password'
                 placeholder=''
                 className='signup__input w-full p-4 text-lg border-2 border-solid border-gray-300 rounded-2xl bg-gray-100 transition-all duration-200 ease-linear focus:border-primary'
+>>>>>>> 9692b988c9ab59a0444717ce08f1057a5810e816
                 required
               />
             </div>
