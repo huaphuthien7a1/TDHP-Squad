@@ -41,7 +41,13 @@ const HomePage = () => {
       <div className='grid grid-cols-4 gap-4 mt-4'>
         {courses.map((course: any, index) => {
           return (
-            <Link to={`/course/${course._id}`} key={index}>
+            <Link
+              to={{
+                pathname: `/course/${course._id}`,
+                state: { course: course },
+              }}
+              key={index}
+            >
               <div className='max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 <img
                   className='w-full'
