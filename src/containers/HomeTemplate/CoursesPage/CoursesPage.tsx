@@ -38,7 +38,7 @@ const CoursesPage: FC = () => {
                     <Link
                       to={{
                         pathname: `/course/${course._id}`,
-                        state: { courseId: course._id },
+                        state: { course: course },
                       }}
                     >
                       <div
@@ -54,21 +54,24 @@ const CoursesPage: FC = () => {
                   <Link
                     to={{
                       pathname: `/course/${course._id}`,
-                      state: { courseId: course._id },
+                      state: { course: course },
                     }}
                   >
                     <h5 className='font-bold text-lg mb-3'>{course.name}</h5>
                   </Link>
 
                   <p className='mb-4 pb-2'>{course.description}</p>
-                  <a
-                    href={`/course/${course._id}`}
+                  <Link
+                    to={{
+                      pathname: `/course/${course._id}`,
+                      state: { course: course },
+                    }}
                     data-mdb-ripple='true'
                     data-mdb-ripple-color='light'
                     className='inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
                   >
                     View the course
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

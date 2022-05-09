@@ -75,6 +75,7 @@
     "lint-staged": "^12.4.1",
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
+    "rating-star": "^1.1.0",
     "react-responsive-carousel": "^3.2.23",
     "sass": "^1.51.0",
     "sweetalert2": "^11.4.10",
