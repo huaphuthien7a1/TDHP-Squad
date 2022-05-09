@@ -5,6 +5,7 @@ import DetailCoursePage from 'containers/HomeTemplate/DetailCoursePage';
 import RoomsPage from 'containers/HomeTemplate/RoomsPage';
 import CompetitionsPage from 'containers/HomeTemplate/CompetitionsPage';
 import DetailLearningPathPage from 'containers/HomeTemplate/DetailLearningPathPage';
+import DetailRoomPage from 'containers/HomeTemplate/DetailRoomPage';
 const routesHome = [
   {
     exact: true,
@@ -30,6 +31,11 @@ const routesHome = [
     exact: false,
     path: '/course',
     component: CoursesPage,
+  },
+  {
+    exact: false,
+    path: '/room/:id',
+    component: DetailRoomPage,
   },
   {
     exact: false,

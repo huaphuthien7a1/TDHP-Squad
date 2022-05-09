@@ -23,7 +23,10 @@ const CoursesPage: FC = () => {
       <div className='grid lg:grid-cols-3 gap-x-6 gap-y-12 xl:gap-x-12'>
         {courses.map((course: any) => {
           return (
-            <div className='mb-6 lg:mb-0' key={course._id}>
+            <div
+              className='mb-6 lg:mb-0 hover:-translate-y-2 ease-out duration-300'
+              key={course._id}
+            >
               <div className='relative block bg-white rounded-lg shadow-lg'>
                 <div className='flex'>
                   <div

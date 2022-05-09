@@ -20,6 +20,9 @@ const Navbar = () => {
   }, []);
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
     Swal.fire({
       imageWidth: '400',
       imageHeight: '100',
@@ -89,7 +92,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <div className='flex items-center relative' data-dropdown>
+            <div
+              className='flex items-center relative cursor-pointer'
+              data-dropdown
+            >
               <i className='fas fa-user p-2 rounded-full border-2 border-black bg-white hover:bg-slate-100 mr-3'></i>
               <p className='italic cursor-pointer'>Welcome</p>
               <ul

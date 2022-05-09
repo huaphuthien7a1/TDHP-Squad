@@ -30,7 +30,7 @@ const LearningPathsPage: FC = () => {
               to={`/learning-path/${learningPath._id}`}
               key={learningPath._id}
             >
-              <div className='max-w-sm w-full lg:max-w-full lg:flex my-4'>
+              <div className='max-w-sm w-full lg:max-w-full lg:flex my-4 hover:-translate-y-2 ease-out duration-300'>
                 <div
                   className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center'
                   style={{

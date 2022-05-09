@@ -42,7 +42,7 @@ const HomePage = () => {
         {courses.map((course: any, index) => {
           return (
             <Link to={`/course/${course._id}`} key={index}>
-              <div className='max-w-sm rounded overflow-hidden shadow-lg'>
+              <div className='max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 <img
                   className='w-full'
                   src={course.thumbnail.url}
@@ -71,7 +71,7 @@ const HomePage = () => {
               to={`/learning-path/${learningPath._id}`}
               key={learningPath._id}
             >
-              <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg'>
+              <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 {learningPath.name}
               </div>
             </Link>
