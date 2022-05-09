@@ -74,7 +74,10 @@ const HomePage = () => {
         {learningPaths?.map((learningPath: any) => {
           return (
             <Link
-              to={`/learning-path/${learningPath._id}`}
+              to={{
+                pathname: `/learning-path/${learningPath._id}`,
+                state: { learningPath: learningPath },
+              }}
               key={learningPath._id}
             >
               <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
