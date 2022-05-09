@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actFetchCourses } from "redux/actions/course.action";
@@ -17,6 +17,7 @@ const CoursesPage: FC = () => {
   useEffect(() => {
     setCourses(listCourse);
   }, [listCourse]);
+
   const renderCourses = () => {
     if (isLoading) return <Spinner />;
     return (
@@ -81,10 +82,15 @@ const CoursesPage: FC = () => {
     );
   };
   return (
-    <>
-      <h1 className="text-3xl mt-4 font-bold mb-10">COURSES</h1>
+    <div>
+      <div className="flex flex-row items-center mt-4 mb-10 justify-between">
+        <h1 className="text-3xl font-bold mr-3">COURSES</h1>
+        <Link to="/create-course" className="text-4xl mr-6 cursor-pointer">
+          <i className="far fa-plus-square"></i>
+        </Link>
+      </div>
       <div>{renderCourses()}</div>
-    </>
+    </div>
   );
 };
 
