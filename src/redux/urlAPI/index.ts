@@ -8,4 +8,4 @@ export const URL_GET_ROOM_BY_ID = (id: string) =>
 export const URL_GET_HISTORY_CHAT = (id: string) =>
   `${process.env.REACT_APP_BASE_URL}/chat/${id}`;
 export const URL_JOIN_ROOM = (roomId: string) =>
-  `${process.env.REACT_APP_BASE_URL}/join-room/${roomId}`;
+  `${process.env.REACT_APP_BASE_URL}/user/join-room/${roomId}`;

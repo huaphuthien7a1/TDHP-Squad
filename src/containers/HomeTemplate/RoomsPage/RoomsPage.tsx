@@ -35,7 +35,7 @@ const RoomsPage: FC = () => {
         timer: 1500,
         timerProgressBar: true,
       });
-      // history.push(`/room/${roomId}`);
+      history.push(`/room/${roomId}`);
     } catch (error: any) {
       Swal.fire({
         imageWidth: '400',

@@ -13,8 +13,8 @@ export const actFetchChats = (id: string) => (dispatch: Dispatch<any>) => {
     },
   })
     .then((res) => {
-      console.log(res.data.data);
-      dispatch(getChatSuccess(res.data.data));
+      console.log('chatHistory', res.data.chatHistory);
+      dispatch(getChatSuccess(res.data.chatHistory));
     })
     .catch((error) => {
       console.log(error.response.data.message);
