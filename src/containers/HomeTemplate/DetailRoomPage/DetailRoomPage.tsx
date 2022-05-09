@@ -1,4 +1,4 @@
-import { useEffect, FC, useState } from 'react';
+import { useEffect, FC, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
 
@@ -38,6 +38,7 @@ const DetailRoomPage: FC = () => {
     dispatch(actGetRoomById(params.id) as any);
     dispatch(actFetchChats(params.id) as any);
   }, []);
+  console.log('historymessage', historyMessage);
 
   useEffect(() => {
     socket = io(`${process.env.REACT_APP_SOCKET_ENDPOINT}`, {
@@ -46,10 +47,7 @@ const DetailRoomPage: FC = () => {
     socket.on(
       'from-server',
       (data: { senderName: string; content: string }) => {
-        let newHistoryMessage: { senderName: string; content: string }[] =
-          historyMessage;
-        newHistoryMessage.push(data);
-        setHistoryMessage(newHistoryMessage);
+        setHistoryMessage((pre) => [...pre, data]);
       }
     );
     return () => {
@@ -72,7 +70,7 @@ const DetailRoomPage: FC = () => {
   };
 
   const renderMessage = () =>
-    historyMessage.map((item: any, index, arr): JSX.Element => {
+    historyMessage.map((item: any, index): JSX.Element => {
       return (
         <>
           {item.senderName === username ? (
