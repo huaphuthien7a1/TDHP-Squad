@@ -43,6 +43,10 @@ const DetailRoomPage: FC = () => {
   console.log('historymessage', historyMessage);
 
   useEffect(() => {
+    if (myRef.current) executeScroll();
+  });
+
+  useEffect(() => {
     socket = io(`${process.env.REACT_APP_SOCKET_ENDPOINT}`, {
       transports: ['websocket', 'polling', 'flashsocket'],
     });
@@ -50,7 +54,6 @@ const DetailRoomPage: FC = () => {
       'from-server',
       (data: { senderName: string; content: string }) => {
         setHistoryMessage((pre) => [...pre, data]);
-        executeScroll();
       }
     );
     return () => {
