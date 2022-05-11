@@ -6,9 +6,6 @@ import IRootState from 'models/IRootState';
 import Spinner from 'components/Spinner';
 
 const CoursesPage: FC = () => {
-  const role: { isTeacher: string; isProUser: string } = JSON.parse(
-    localStorage.getItem('role') || ''
-  );
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
   const { isLoading, listCourse } = useSelector((state: IRootState) => {
@@ -85,12 +82,12 @@ const CoursesPage: FC = () => {
     );
   };
   return (
-    <div>
+    <>
       <div className='flex flex-row items-center mt-4 mb-10 justify-between'>
         <h1 className='text-3xl font-bold mr-3'>COURSES</h1>
       </div>
       <div>{renderCourses()}</div>
-    </div>
+    </>
   );
 };
 

@@ -14,6 +14,8 @@ let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 const DetailRoomPage: FC = () => {
   const userId = JSON.parse(localStorage.getItem('userId') || '');
   const username = JSON.parse(localStorage.getItem('username') || '');
+  const myRef: any = useRef(null);
+  const executeScroll = () => myRef.current.scrollIntoView();
 
   const dispatch = useDispatch();
   const [message, setMessage] = useState('');
@@ -48,6 +50,7 @@ const DetailRoomPage: FC = () => {
       'from-server',
       (data: { senderName: string; content: string }) => {
         setHistoryMessage((pre) => [...pre, data]);
+        executeScroll();
       }
     );
     return () => {
@@ -71,16 +74,36 @@ const DetailRoomPage: FC = () => {
 
   const renderMessage = () =>
     historyMessage.map((item: any, index): JSX.Element => {
+      if (index + 1 !== historyMessage.length)
+        return (
+          <>
+            {item.senderName === username ? (
+              <li className='text-xl text-right p-3 ' key={index}>
+                <span className='bg-blue-600 text-white p-3 rounded-xl'>
+                  <span className=''>{item.content}</span>
+                </span>
+              </li>
+            ) : (
+              <li className='text-xl text-left p-3 ' key={index}>
+                <span className='bg-gray-500 text-white p-3 rounded-xl'>
+                  <span className={`font-bold mr-1  `}>{item.senderName}:</span>
+                  <span className='ml-1'>{item.content}</span>
+                </span>
+              </li>
+            )}
+          </>
+        );
+
       return (
         <>
           {item.senderName === username ? (
-            <li className='text-xl text-right p-3 ' key={index}>
+            <li className='text-xl text-right p-3 ' key={index} ref={myRef}>
               <span className='bg-blue-600 text-white p-3 rounded-xl'>
                 <span className=''>{item.content}</span>
               </span>
             </li>
           ) : (
-            <li className='text-xl text-left p-3 ' key={index}>
+            <li className='text-xl text-left p-3 ' key={index} ref={myRef}>
               <span className='bg-gray-500 text-white p-3 rounded-xl'>
                 <span className={`font-bold mr-1  `}>{item.senderName}:</span>
                 <span className='ml-1'>{item.content}</span>

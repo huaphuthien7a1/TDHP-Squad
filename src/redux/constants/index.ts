@@ -12,3 +12,5 @@ export const GET_ROOM_BY_ID_FAIL = `GET_ROOM_BY_ID_FAIL`;
 export const GET_CHATS_REQUEST = `GET_CHATS_REQUEST`;
 export const GET_CHATS_SUCCESS = `GET_CHATS_SUCCESS`;
 export const GET_CHATS_FAIL = `GET_COURSES_FAIL`;
+export const OPEN_MODAL = `OPEN_MODAL`;
+export const CLOSE_MODAL = `CLOSE_MODAL`;

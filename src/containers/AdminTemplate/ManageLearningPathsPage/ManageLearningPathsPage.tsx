@@ -4,8 +4,9 @@ import { Button } from 'antd';
 const ManageLearningPathsPage: FC = () => {
   return (
     <div>
-      ManageLearningPathsPage
-      <Button type='primary'>Button</Button>
+      <Button type='primary' className='m-3'>
+        Create learning path
+      </Button>
     </div>
   );
 };

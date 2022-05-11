@@ -1,69 +1,40 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { URL_GET_LEARNING_PATHS } from 'redux/urlAPI';
-
+import React, { useState, useEffect } from 'react';
+import ModalForm from 'HOC/ModalForm';
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'components/Spinner';
+import IRootState from 'models/IRootState';
+import { actFetchCourses } from 'redux/actions/course.action';
+import { Button } from 'antd';
+import TableCourses from 'components/TableCourses';
+import { actOpenModal } from 'redux/actions/modal.action';
+import CreateCourseForm from 'components/CreateCourseForm';
 const ManageCoursesPage = (props: any) => {
-  const [newCourse, setNewCourse] = useState({
-    name: '',
-    description: '',
-  });
+  const dispatch = useDispatch();
+  const [courses, setCourses] = useState([]);
+  const { isLoading, listCourse } = useSelector(
+    (state: IRootState) => state.courseReducer
+  );
 
-  const handleChange = (e: any) => {
-    setNewCourse({
-      ...newCourse,
-      [e.target.name]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    dispatch(actFetchCourses() as any);
+  }, []);
 
-  const handleSubmitForm = async (event: any) => {
-    event.preventDefault();
-    try {
-      const response = await axios({
-        method: 'post',
-        url: URL_GET_LEARNING_PATHS,
-        data: newCourse,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  useEffect(() => {
+    setCourses(listCourse);
+  }, [listCourse]);
+
+  const handleCreateCourse = () => {
+    dispatch(actOpenModal({ ComponentContent: <CreateCourseForm /> }) as any);
   };
 
   return (
-    <div className='flex items-center justify-center'>
-      <form
-        className='flex flex-col gap-y-3 w-[500px] bg-primary bg-opacity-75 rounded-xl p-6'
-        autoComplete='off'
-        onSubmit={handleSubmitForm}
-      >
-        <h2 className='text-white text-3xl text-center font-medium mb-3'>
-          Create new course
-        </h2>
-        <div className='flex flex-col gap-y-3'>
-          <input
-            type='text'
-            name='name'
-            id='name'
-            className='p-5 w-full border-solid border border-gray-100 rounded-lg'
-            placeholder='Enter course name'
-            onChange={handleChange}
-          />
-        </div>
-        <textarea
-          id='description'
-          name='description'
-          className='p-5 w-full min-h-[200px] border-solid border border-gray-100 rounded-lg scrollbar-hide'
-          placeholder='Enter course description'
-          onChange={handleChange}
-        ></textarea>
-        <button
-          type='submit'
-          className='p-3 text-lg font-medium rounded-lg text-white bg-blue-400'
-        >
-          Create
-        </button>
-      </form>
-    </div>
+    <>
+      <Button onClick={handleCreateCourse} type='primary' className='m-3'>
+        Create course
+      </Button>
+      <TableCourses listCourse={listCourse} isLoading={isLoading} />
+      <ModalForm />
+    </>
   );
 };
 

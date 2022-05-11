@@ -93,7 +93,7 @@ const Navbar = () => {
           <>
             <Link
               to='/login'
-              className='border-2 border-black px-3 py-1 rounded bg-white hover:bg-slate-100 font-semibold text-center mr-3'
+              className='border-2 border-black px-3 py-1 rounded bg-white hover:bg-slate-100 font-semibold text-center mr-3 text-black hover:text-black'
             >
               <span>Log in</span>
             </Link>
