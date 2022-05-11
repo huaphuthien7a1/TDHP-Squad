@@ -38,7 +38,15 @@ const Login: FC = () => {
       } = jwt(res.data.token.accessToken);
       localStorage.setItem('userId', JSON.stringify(accountInfo.userId));
       localStorage.setItem('username', JSON.stringify(accountInfo.username));
-      localStorage.setItem('role', JSON.stringify(accountInfo.role));
+      localStorage.setItem(
+        'isTeacher',
+        JSON.stringify(accountInfo.role.isTeacher)
+      );
+      localStorage.setItem(
+        'isProUser',
+        JSON.stringify(accountInfo.role.isProUser)
+      );
+
       Swal.fire({
         imageWidth: '400',
         imageHeight: '100',

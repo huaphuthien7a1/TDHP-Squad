@@ -10,8 +10,8 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const roleJSON = localStorage.getItem('role');
-    if (roleJSON) setIsTeacher(JSON.parse(roleJSON).isTeacher);
+    const isTeacherJSON = localStorage.getItem('isTeacher');
+    if (isTeacherJSON) setIsTeacher(JSON.parse(isTeacherJSON));
   }, []);
   const history = useHistory();
   const [isShow, setIsShow] = useState(false);
@@ -33,7 +33,9 @@ const Navbar = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
-    localStorage.removeItem('role');
+    localStorage.removeItem('isTeacher');
+    localStorage.removeItem('isProUser');
+
     Swal.fire({
       imageWidth: '400',
       imageHeight: '100',
