@@ -17,7 +17,7 @@ const Sidebar = () => {
             location.pathname.indexOf(item.url) !== -1
               ? 'bg-slate-200'
               : 'bg-white'
-          } hover:bg-slate-200 rounded-xl ease-out duration-300`}
+          } hover:bg-slate-100 rounded-xl ease-out duration-300 active:bg-slate-200 text-black`}
         >
           {item.content}
         </div>

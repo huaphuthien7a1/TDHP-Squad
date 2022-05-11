@@ -113,7 +113,7 @@ const DetailRoomPage: FC = () => {
             id='chat-message'
             placeholder='Enter your message'
             onChange={handleChange}
-            className='w-full border-2 p-3'
+            className='w-full border-2 p-3 '
           />
           <input
             type='submit'

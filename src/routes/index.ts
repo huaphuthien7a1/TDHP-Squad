@@ -6,7 +6,9 @@ import RoomsPage from 'containers/HomeTemplate/RoomsPage';
 import CompetitionsPage from 'containers/HomeTemplate/CompetitionsPage';
 import DetailLearningPathPage from 'containers/HomeTemplate/DetailLearningPathPage';
 import DetailRoomPage from 'containers/HomeTemplate/DetailRoomPage';
-import CreateCoursePage from 'containers/AdminTemplate/CreateCoursePage';
+import ManageCoursesPage from 'containers/AdminTemplate/ManageCoursesPage';
+import ManageLearningPathsPage from 'containers/AdminTemplate/ManageLearningPathsPage';
+
 const routesHome = [
   {
     exact: true,
@@ -53,12 +55,17 @@ const routesAdmin = [
   {
     exact: false,
     path: '/admin/course',
-    component: CreateCoursePage,
+    component: ManageCoursesPage,
+  },
+  {
+    exact: false,
+    path: '/admin/learning-path',
+    component: ManageLearningPathsPage,
   },
   {
     exact: false,
     path: '/admin',
-    component: CreateCoursePage,
+    component: ManageCoursesPage,
   },
 ];
 

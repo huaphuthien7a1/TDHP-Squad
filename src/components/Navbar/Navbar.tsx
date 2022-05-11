@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2'>
       <Link to='/'>
-        <h1 className='text-5xl font-bold text-secondary'>TDHP</h1>
+        <h1 className='text-5xl font-bold text-secondary m-0'>TDHP</h1>
       </Link>
       <div className='flex justify-center'>
         <div className='xl:w-96'>
@@ -111,7 +111,7 @@ const Navbar = () => {
               data-dropdown
             >
               <i className='fas fa-user p-2 rounded-full border-2 border-black bg-white hover:bg-slate-100 mr-3'></i>
-              <p className='italic cursor-pointer'>Hi, {username}</p>
+              <p className='italic cursor-pointer m-0'>Hi, {username}</p>
               <ul
                 className={`absolute ${
                   isTeacher ? 'bottom-[-150px]' : 'bottom-[-50px]'

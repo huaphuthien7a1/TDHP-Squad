@@ -48,7 +48,7 @@ const HomePage = () => {
               }}
               key={index}
             >
-              <div className='max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
+              <div className='text-black max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 <img
                   className='w-full'
                   src={course.thumbnail.url}
