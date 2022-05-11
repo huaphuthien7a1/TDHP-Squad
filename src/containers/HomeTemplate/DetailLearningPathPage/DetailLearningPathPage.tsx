@@ -9,15 +9,15 @@ const DetailLearningPathPage: FC = (props: any) => {
   return (
     <div>
       <h1 className="text-3xl mt-4 font-bold mb-10">COURSES</h1>
-      <div className="flex flex-row bg-primary bg-opacity-30 mb-14 rounded-xl">
-        <div className="w-1/3 p-4 h-64 overflow-hidden">
+      <div className="flex flex-col lg:flex-row bg-primary bg-opacity-30 mb-14 rounded-xl">
+        <div className="w-full lg:w-1/3 p-4 h-64 overflow-hidden">
           <img
             className="w-full h-full object-cover rounded-xl"
             src={learningPath.thumbnail.url}
             alt=""
           />
         </div>
-        <div className="w-2/3 p-6">
+        <div className="w-full lg:w-2/3 p-6">
           <h2 className="text-3xl mb-6 font-medium text-secondary">
             {learningPath.name}
           </h2>
@@ -31,7 +31,7 @@ const DetailLearningPathPage: FC = (props: any) => {
           </div>
         </div>
       </div>
-      <div className="grid lg:grid-cols-3 gap-x-6 gap-y-12 xl:gap-x-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-12 xl:gap-x-12">
         {learningPath.courses.map((course: any) => {
           return (
             <div
@@ -39,7 +39,7 @@ const DetailLearningPathPage: FC = (props: any) => {
               key={course._id}
             >
               <div className="relative block bg-white rounded-lg shadow-lg">
-                <div className="flex">
+                <div className="flex justify-center">
                   <div
                     className="relative overflow-hidden bg-no-repeat bg-cover shadow-lg rounded-lg mx-4 -mt-4"
                     data-mdb-ripple="true"
