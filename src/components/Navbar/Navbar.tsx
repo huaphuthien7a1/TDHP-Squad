@@ -1,8 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
 const Navbar = () => {
+  const [username, setUserName] = useState('');
+  const [isTeacher, setIsTeacher] = useState(false);
+  useEffect(() => {
+    const usernameJSON = localStorage.getItem('username');
+    if (usernameJSON) setUserName(JSON.parse(usernameJSON));
+  }, []);
+
+  useEffect(() => {
+    const roleJSON = localStorage.getItem('role');
+    if (roleJSON) setIsTeacher(JSON.parse(roleJSON).isTeacher);
+  }, []);
+  const history = useHistory();
   const [isShow, setIsShow] = useState(false);
   useEffect(() => {
     const handleClick = (e: any) => {
@@ -34,6 +45,7 @@ const Navbar = () => {
       timer: 1500,
       timerProgressBar: true,
     });
+    history.replace('/');
   };
   return (
     <div className='bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2'>
@@ -97,13 +109,28 @@ const Navbar = () => {
               data-dropdown
             >
               <i className='fas fa-user p-2 rounded-full border-2 border-black bg-white hover:bg-slate-100 mr-3'></i>
-              <p className='italic cursor-pointer'>Welcome</p>
+              <p className='italic cursor-pointer'>Hi, {username}</p>
               <ul
-                className={`absolute bottom-[-150%] left-[35%] text-left rounded-lg shadow-lg z-[100] bg-white p-3 ${
+                className={`absolute ${
+                  isTeacher ? 'bottom-[-150px]' : 'bottom-[-50px]'
+                } right-[-15px] text-left rounded-lg shadow-xl border z-[100] bg-white ${
                   isShow ? 'block' : 'hidden'
-                }`}
+                } w-[180px]`}
               >
-                <li onClick={handleLogout} className='cursor-pointer'>
+                {isTeacher && (
+                  <li
+                    onClick={() => {
+                      history.push('/admin/course');
+                    }}
+                    className='cursor-pointer hover:bg-slate-100 py-2 px-3'
+                  >
+                    Manage your Courses, Learning Path
+                  </li>
+                )}
+                <li
+                  onClick={handleLogout}
+                  className='cursor-pointer hover:bg-slate-100 py-2 px-3'
+                >
                   Logout
                 </li>
               </ul>

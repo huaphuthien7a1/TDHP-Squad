@@ -76,15 +76,14 @@ const DetailRoomPage: FC = () => {
           {item.senderName === username ? (
             <li className='text-xl text-right p-3 ' key={index}>
               <span className='bg-blue-600 text-white p-3 rounded-xl'>
-                <span className='mr-2'>{item.content}</span>
-                <span className={`font-bold mr-2  `}>:{item.senderName}</span>
+                <span className=''>{item.content}</span>
               </span>
             </li>
           ) : (
             <li className='text-xl text-left p-3 ' key={index}>
               <span className='bg-gray-500 text-white p-3 rounded-xl'>
-                <span className={`font-bold mr-2  `}>{item.senderName}:</span>
-                <span className='ml-2'>{item.content}</span>
+                <span className={`font-bold mr-1  `}>{item.senderName}:</span>
+                <span className='ml-1'>{item.content}</span>
               </span>
             </li>
           )}

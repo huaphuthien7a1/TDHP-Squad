@@ -1,59 +1,65 @@
-import HomePage from "../containers/HomeTemplate/HomePage";
-import LearningPathsPage from "containers/HomeTemplate/LearningPathsPage";
-import CoursesPage from "containers/HomeTemplate/CoursesPage";
-import DetailCoursePage from "containers/HomeTemplate/DetailCoursePage";
-import RoomsPage from "containers/HomeTemplate/RoomsPage";
-import CompetitionsPage from "containers/HomeTemplate/CompetitionsPage";
-import DetailLearningPathPage from "containers/HomeTemplate/DetailLearningPathPage";
-import DetailRoomPage from "containers/HomeTemplate/DetailRoomPage";
-import CreateCoursePage from "containers/HomeTemplate/CreateCoursePage";
+import HomePage from '../containers/HomeTemplate/HomePage';
+import LearningPathsPage from 'containers/HomeTemplate/LearningPathsPage';
+import CoursesPage from 'containers/HomeTemplate/CoursesPage';
+import DetailCoursePage from 'containers/HomeTemplate/DetailCoursePage';
+import RoomsPage from 'containers/HomeTemplate/RoomsPage';
+import CompetitionsPage from 'containers/HomeTemplate/CompetitionsPage';
+import DetailLearningPathPage from 'containers/HomeTemplate/DetailLearningPathPage';
+import DetailRoomPage from 'containers/HomeTemplate/DetailRoomPage';
+import CreateCoursePage from 'containers/AdminTemplate/CreateCoursePage';
 const routesHome = [
   {
     exact: true,
-    path: "/",
+    path: '/',
     component: HomePage,
   },
   {
     exact: false,
-    path: "/learning-path/:id",
+    path: '/learning-path/:id',
     component: DetailLearningPathPage,
   },
   {
     exact: false,
-    path: "/learning-path",
+    path: '/learning-path',
     component: LearningPathsPage,
   },
   {
     exact: false,
-    path: "/course/:id",
+    path: '/course/:id',
     component: DetailCoursePage,
   },
   {
     exact: false,
-    path: "/course",
+    path: '/course',
     component: CoursesPage,
   },
   {
     exact: false,
-    path: "/room/:id",
+    path: '/room/:id',
     component: DetailRoomPage,
   },
   {
     exact: false,
-    path: "/room",
+    path: '/room',
     component: RoomsPage,
   },
   {
     exact: false,
-    path: "/competition",
+    path: '/competition',
     component: CompetitionsPage,
+  },
+];
+const routesAdmin = [
+  {
+    exact: false,
+    path: '/admin/course',
+    component: CreateCoursePage,
   },
   {
     exact: false,
-    path: "/create-course",
+    path: '/admin',
     component: CreateCoursePage,
   },
 ];
-// const routesAdmin = [];
 
-export { routesHome };
+export { routesHome, routesAdmin };

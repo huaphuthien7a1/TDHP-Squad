@@ -1,6 +1,7 @@
 export const URL_SIGN_IN = `${process.env.REACT_APP_BASE_URL}/auth/login`;
 export const URL_SIGN_UP = `${process.env.REACT_APP_BASE_URL}/auth/register`;
 export const URL_GET_COURSES = `${process.env.REACT_APP_BASE_URL}/course`;
+export const URL_CREATE_COURSE = `${process.env.REACT_APP_BASE_URL}/course`;
 export const URL_GET_LEARNING_PATHS = `${process.env.REACT_APP_BASE_URL}/learning-path`;
 export const URL_GET_ROOMS = `${process.env.REACT_APP_BASE_URL}/room`;
 export const URL_GET_ROOM_BY_ID = (id: string) =>

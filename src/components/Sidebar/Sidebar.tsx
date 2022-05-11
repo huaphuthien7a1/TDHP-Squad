@@ -24,7 +24,7 @@ const Sidebar = () => {
       </Link>
     ));
   return (
-    <div className='fixed top-1/2 -translate-y-1/2 left-0  w-[160px] border-2 flex flex-col py-4 rounded-r-xl text-lg'>
+    <div className='fixed top-1/2 -translate-y-1/2 left-0  w-[160px] flex flex-col py-4 rounded-r-xl text-lg drop-shadow border'>
       {renderSidebarItems()}
     </div>
   );

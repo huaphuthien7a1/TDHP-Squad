@@ -1,3 +1,4 @@
+import Navbar from 'components/Navbar';
 import React, { FunctionComponent } from 'react';
 import {
   Route,
@@ -16,8 +17,8 @@ interface PrivateRouteProps extends RouteProps {
 function LayoutAdmin({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <>
-      <Sidebar />
-      {children}
+      <Navbar />
+      <div className='mt-[64px]'>{children}</div>
     </>
   );
 }
@@ -26,21 +27,26 @@ const AdminTemplate: FunctionComponent<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props: any) => {
-        const token = localStorage.getItem('token');
-        if (token)
-          return (
-            <LayoutAdmin>
-              <Component {...props} />
-            </LayoutAdmin>
-          );
-        return <Redirect to='/' />;
-      }}
-    ></Route>
+  const role: { isTeacher: string; isProUser: string } = JSON.parse(
+    localStorage.getItem('role') || ''
   );
+  if (role.isTeacher)
+    return (
+      <Route
+        {...rest}
+        render={(props: any) => {
+          const token = localStorage.getItem('token');
+          if (token)
+            return (
+              <LayoutAdmin>
+                <Component {...props} />
+              </LayoutAdmin>
+            );
+          return <Redirect to='/' />;
+        }}
+      ></Route>
+    );
+  return <Redirect to='/' />;
 };
 
 export default AdminTemplate;
