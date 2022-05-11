@@ -9,7 +9,8 @@ import { checkUserIsInRoom } from 'utils/checkUserIsInRoom';
 import { actJoinRoom } from 'redux/actions/user.action';
 const RoomsPage: FC = () => {
   const history = useHistory();
-  const userId = JSON.parse(localStorage.getItem('userId') || '');
+  let userId = localStorage.getItem('userId') || '';
+  if (userId) userId = JSON.parse(userId);
   const dispatch = useDispatch();
   const [rooms, setRooms] = useState([]);
   const { isLoading, listRoom } = useSelector(
@@ -22,6 +23,7 @@ const RoomsPage: FC = () => {
     setRooms(listRoom);
   }, [listRoom]);
   const handleJoinRoom = async (roomId: string) => {
+    if (userId === '') history.push('/login');
     try {
       const res = await actJoinRoom(roomId);
       Swal.fire({

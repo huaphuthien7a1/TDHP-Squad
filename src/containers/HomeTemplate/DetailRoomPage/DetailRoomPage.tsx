@@ -81,17 +81,26 @@ const DetailRoomPage: FC = () => {
         return (
           <>
             {item.senderName === username ? (
-              <li className='text-xl text-right p-3 ' key={index}>
-                <span className='bg-blue-600 text-white p-3 rounded-xl'>
+              <li
+                className='text-xl text-right p-1 flex justify-end'
+                key={index}
+              >
+                <div
+                  className='bg-blue-600 text-white p-3 rounded-xl w-fit'
+                  style={{ maxWidth: '45%', overflowWrap: 'break-word' }}
+                >
                   <span className=''>{item.content}</span>
-                </span>
+                </div>
               </li>
             ) : (
-              <li className='text-xl text-left p-3 ' key={index}>
-                <span className='bg-gray-500 text-white p-3 rounded-xl'>
+              <li className='text-xl text-left p-1' key={index}>
+                <div
+                  className='bg-gray-500 text-white p-3 rounded-xl w-fit'
+                  style={{ maxWidth: '45%', overflowWrap: 'break-word' }}
+                >
                   <span className={`font-bold mr-1  `}>{item.senderName}:</span>
-                  <span className='ml-1'>{item.content}</span>
-                </span>
+                  {item.content}
+                </div>
               </li>
             )}
           </>
@@ -100,17 +109,27 @@ const DetailRoomPage: FC = () => {
       return (
         <>
           {item.senderName === username ? (
-            <li className='text-xl text-right p-3 ' key={index} ref={myRef}>
-              <span className='bg-blue-600 text-white p-3 rounded-xl'>
+            <li
+              className='text-xl text-right p-1 flex justify-end'
+              key={index}
+              ref={myRef}
+            >
+              <div
+                className='bg-blue-600 text-white p-3 rounded-xl w-fit'
+                style={{ maxWidth: '45%', overflowWrap: 'break-word' }}
+              >
                 <span className=''>{item.content}</span>
-              </span>
+              </div>
             </li>
           ) : (
-            <li className='text-xl text-left p-3 ' key={index} ref={myRef}>
-              <span className='bg-gray-500 text-white p-3 rounded-xl'>
+            <li className='text-xl text-left p-1 ' key={index} ref={myRef}>
+              <div
+                className='bg-gray-500 text-white p-3 rounded-xl w-fit'
+                style={{ maxWidth: '45%', overflowWrap: 'break-word' }}
+              >
                 <span className={`font-bold mr-1  `}>{item.senderName}:</span>
-                <span className='ml-1'>{item.content}</span>
-              </span>
+                {item.content}
+              </div>
             </li>
           )}
         </>
@@ -121,7 +140,7 @@ const DetailRoomPage: FC = () => {
   return (
     <div>
       <h1 className='text-4xl font-bold mb-4'>Room chat</h1>
-      <div className={`h-[430px] flex flex-col justify-between`}>
+      <div className={`h-[530px] flex flex-col justify-between`}>
         <div className={` overflow-y-scroll h-full flex flex-col justify-end`}>
           <ul id='show-chat' className='h-full'>
             {renderMessage()}

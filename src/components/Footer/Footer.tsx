@@ -1,6 +1,9 @@
 import { FC, memo } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Footer: FC = () => {
+  const location = useLocation();
+  if (location.pathname.indexOf('/room/') !== -1) return <></>;
   return (
     <footer
       className='text-center text-white h-[145px]'
