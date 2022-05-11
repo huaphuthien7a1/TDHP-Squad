@@ -31,7 +31,7 @@ const DetailLearningPathPage: FC = (props: any) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-12 xl:gap-x-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 xl:gap-x-12">
         {learningPath.courses.map((course: any) => {
           return (
             <div
