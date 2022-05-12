@@ -3,11 +3,11 @@ import ReactPlayer from "react-player";
 import { RatingStar } from "rating-star";
 
 const DetailCoursePage = (props: any) => {
-  const [videoInfo, setVideoInfo] = useState({
-    url: "",
-    name: "",
-  });
   const course = props.location.state.course;
+  const [videoInfo, setVideoInfo] = useState({
+    url: course ? course.videos[0].url : "",
+    name: course ? course.videos[0].name : "",
+  });
 
   const handleChooseVideo = (video: any) => {
     setVideoInfo(video);
