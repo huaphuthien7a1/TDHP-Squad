@@ -14,3 +14,5 @@ export const URL_GET_SEARCH_COURSES = (name: string) =>
   `${process.env.REACT_APP_BASE_URL}/course/search/${name}`;
 export const URL_GET_SEARCH_LEARNING_PATHS = (name: string) =>
   `${process.env.REACT_APP_BASE_URL}/learning-path/search/${name}`;
+export const URL_GET_SEARCH_ROOMS = (name: string) =>
+  `${process.env.REACT_APP_BASE_URL}/room/search/${name}`;

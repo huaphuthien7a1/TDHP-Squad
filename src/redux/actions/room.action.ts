@@ -1,12 +1,16 @@
-import axios from 'axios';
-import { Dispatch } from 'redux';
-import * as ActionType from '../constants';
-import { URL_GET_ROOMS, URL_GET_ROOM_BY_ID } from '../urlAPI';
+import axios from "axios";
+import { Dispatch } from "redux";
+import * as ActionType from "../constants";
+import {
+  URL_GET_ROOMS,
+  URL_GET_ROOM_BY_ID,
+  URL_GET_SEARCH_ROOMS,
+} from "../urlAPI";
 export const actFetchRooms = () => (dispatch: Dispatch<any>) => {
   dispatch(getRoomsRequest());
   axios({
     url: URL_GET_ROOMS,
-    method: 'GET',
+    method: "GET",
   })
     .then((res) => {
       console.log(res.data);
@@ -17,12 +21,28 @@ export const actFetchRooms = () => (dispatch: Dispatch<any>) => {
       dispatch(getRoomsFail());
     });
 };
+export const actFetchSearchRooms =
+  (searchValue: string) => (dispatch: Dispatch<any>) => {
+    dispatch(getRoomsRequest());
+    axios({
+      url: URL_GET_SEARCH_ROOMS(searchValue),
+      method: "GET",
+    })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(getRoomsSuccess(res.data.data));
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        dispatch(getRoomsFail());
+      });
+  };
 
 export const actGetRoomById = (id: string) => (dispatch: Dispatch<any>) => {
   dispatch(getRoomsRequest());
   axios({
     url: URL_GET_ROOM_BY_ID(id),
-    method: 'GET',
+    method: "GET",
   })
     .then((res) => {
       console.log(res.data);
