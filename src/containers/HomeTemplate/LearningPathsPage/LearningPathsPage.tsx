@@ -37,7 +37,7 @@ const LearningPathsPage: FC = () => {
   const renderLearningPaths = () => {
     if (isLoadingLearningPaths) return <Spinner />;
     return (
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-none gap-x-6 lg:gap-x-0">
         {learningPaths.map((learningPath: any) => {
           return (
             <Link
