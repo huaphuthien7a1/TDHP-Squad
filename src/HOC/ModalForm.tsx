@@ -14,7 +14,7 @@ const ModalForm = () => {
   };
   return (
     <Modal
-      className='rounded-xl'
+      className='rounded-xl relative'
       visible={isOpen}
       onCancel={handleClose}
       closable={true}

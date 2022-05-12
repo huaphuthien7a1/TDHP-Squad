@@ -17,6 +17,12 @@ const courseReducer = (
       return { ...state, isLoading: false, listCourse: payload.listCourse };
     case ActionType.GET_COURSES_FAIL:
       return { ...state, isLoading: false, listCourse: [] };
+    case ActionType.POST_CREATE_COURSE_REQUEST:
+      return { ...state, isLoading: true };
+    case ActionType.POST_CREATE_COURSE_SUCCESS:
+      return { ...state, isLoading: false };
+    case ActionType.POST_CREATE_COURSE_FAIL:
+      return { ...state, isLoading: false };
     default:
       return { ...state };
   }
