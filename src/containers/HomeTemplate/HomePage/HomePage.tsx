@@ -121,6 +121,7 @@ const HomePage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ delay: 0.5, duration: 1 }}
+      className="lg:ml-[-70px] lg:mr-[70px]"
     >
       <Banner />
       <Link to="/course">
