@@ -1,13 +1,13 @@
-import Banner from "components/Banner";
-import Spinner from "components/Spinner";
-import { useEffect, useState } from "react";
-import { act } from "react-dom/test-utils";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { actFetchCourses } from "redux/actions/course.action";
-import { actFetchLearningPaths } from "redux/actions/learningPath.action";
-import IRootState from "models/IRootState";
-
+import Banner from 'components/Banner';
+import Spinner from 'components/Spinner';
+import { useEffect, useState } from 'react';
+import { act } from 'react-dom/test-utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { actFetchCourses } from 'redux/actions/course.action';
+import { actFetchLearningPaths } from 'redux/actions/learningPath.action';
+import IRootState from 'models/IRootState';
+import { motion } from 'framer-motion';
 const HomePage = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
@@ -38,7 +38,7 @@ const HomePage = () => {
   const renderCourses = () => {
     if (isLoadingCourses) return <Spinner />;
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
         {courses.slice(0, 4).map((course: any, index) => {
           return (
             <Link
@@ -48,15 +48,15 @@ const HomePage = () => {
               }}
               key={index}
             >
-              <div className='text-black px-[15px] pt-[15px] max-w-sm rounded-lg overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
+              <div className='text-black max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300 p-5'>
                 <img
-                  className='w-[365px] h-[200px] rounded-lg'
+                  className='w-ful rounded'
                   src={course.thumbnail.url}
-                  alt="Sunset in the mountains"
+                  alt='Sunset in the mountains'
                 />
-                <div className="py-4">
-                  <div className="font-bold text-xl mb-2">{course.name}</div>
-                  <p className="text-gray-700 text-base">
+                <div className='py-4'>
+                  <div className='font-bold text-xl mb-2'>{course.name}</div>
+                  <p className='text-gray-700 text-base'>
                     {course.description}
                   </p>
                 </div>
@@ -70,7 +70,7 @@ const HomePage = () => {
   const renderLearningPaths = () => {
     if (isLoadingLearningPaths) return <Spinner />;
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
         {learningPaths?.slice(0, 8).map((learningPath: any) => {
           return (
             <Link
@@ -80,7 +80,7 @@ const HomePage = () => {
               }}
               key={learningPath._id}
             >
-              <div className="block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300">
+              <div className='block bg-gray-200 rounded-full py-2 px-4 text-sm font-semibold text-gray-700 mb-2 shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 {learningPath.name}
               </div>
             </Link>
@@ -90,27 +90,34 @@ const HomePage = () => {
     );
   };
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.5, duration: 1 }}
+    >
       <Banner />
-      <Link to="/course">
-        <h1 className="text-3xl mt-4 font-bold">COURSES</h1>
+      <Link to='/course'>
+        <h1 className='text-3xl mt-4 font-bold'>COURSES</h1>
       </Link>
       <div>{renderCourses()}</div>
-      <Link to="/course">
-        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8">
+      <Link to='/course'>
+        <button className='mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8'>
           More Courses
         </button>
       </Link>
-      <Link to="/learning-path">
-        <h1 className="text-3xl mt-4 font-bold">LEARNING PATH</h1>
+      <Link to='/learning-path'>
+        <h1 className='text-3xl mt-4 font-bold'>LEARNING PATH</h1>
       </Link>
       <div>{renderLearningPaths()}</div>
-      <Link to="/learning-path">
-        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8">
+      <Link to='/learning-path'>
+        <button className='mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8'>
           More Learning Paths
         </button>
       </Link>
-    </div>
+
+      <div className='min-h-[350px]'>{renderLearningPaths()}</div>
+    </motion.div>
   );
 };
 

@@ -1,14 +1,14 @@
-import { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import IRootState from "models/IRootState";
+import { FC, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import IRootState from 'models/IRootState';
 import {
   actFetchLearningPaths,
   actFetchSearchLearningPaths,
-} from "redux/actions/learningPath.action";
-import Spinner from "components/Spinner";
-import SearchBar from "components/SearchBar";
-
+} from 'redux/actions/learningPath.action';
+import Spinner from 'components/Spinner';
+import SearchBar from 'components/SearchBar';
+import { motion } from 'framer-motion';
 const LearningPathsPage: FC = () => {
   const dispatch = useDispatch();
   const [learningPaths, setLearningPaths] = useState([]);
@@ -26,7 +26,7 @@ const LearningPathsPage: FC = () => {
   }, [listLearningPath]);
 
   const getSearchValue = (data: any): any => {
-    if (data.value === "") {
+    if (data.value === '') {
       dispatch(actFetchLearningPaths() as any);
     } else {
       dispatch(actFetchSearchLearningPaths(data.value) as any);
@@ -46,31 +46,31 @@ const LearningPathsPage: FC = () => {
               }}
               key={learningPath._id}
             >
-              <div className="max-w-sm w-full lg:max-w-full lg:flex my-4 hover:-translate-y-2 ease-out duration-300">
+              <div className='max-w-sm w-full lg:max-w-full lg:flex my-4 hover:-translate-y-2 ease-out duration-300'>
                 <div
-                  className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center"
+                  className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-center'
                   style={{
                     backgroundImage: `url(${learningPath.thumbnail.url})`,
                   }}
-                  title="Woman holding a mug"
+                  title='Woman holding a mug'
                 ></div>
-                <div className="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                  <div className="mb-8">
-                    <div className="text-gray-900 font-bold text-xl mb-2">
+                <div className='w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal'>
+                  <div className='mb-8'>
+                    <div className='text-gray-900 font-bold text-xl mb-2'>
                       {learningPath.name}
                     </div>
                   </div>
-                  <div className="flex items-center">
+                  <div className='flex items-center'>
                     <img
-                      className="w-10 h-10 rounded-full mr-4"
+                      className='w-10 h-10 rounded-full mr-4'
                       src={learningPath.thumbnail.url}
-                      alt="Avatar of Jonathan Reinink"
+                      alt='Avatar of Jonathan Reinink'
                     />
-                    <div className="text-sm">
-                      <p className="text-gray-900 leading-none">
+                    <div className='text-sm'>
+                      <p className='text-gray-900 leading-none'>
                         Jonathan Reinink
                       </p>
-                      <p className="text-gray-600">Aug 18</p>
+                      <p className='text-gray-600'>Aug 18</p>
                     </div>
                   </div>
                 </div>
@@ -82,11 +82,16 @@ const LearningPathsPage: FC = () => {
     );
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.5, duration: 1 }}
+    >
       <SearchBar getSearchValue={getSearchValue} />
-      <h1 className="text-3xl mt-4 font-bold">LEARNING PATH</h1>
-      {renderLearningPaths()}{" "}
-    </>
+      <h1 className='text-3xl mt-4 font-bold'>LEARNING PATH</h1>
+      {renderLearningPaths()}{' '}
+    </motion.div>
   );
 };
 

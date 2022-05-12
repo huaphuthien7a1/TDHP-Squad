@@ -9,8 +9,8 @@ import IRootState from "models/IRootState";
 import Spinner from "components/Spinner";
 import SearchBar from "components/SearchBar";
 import { ChildProps } from "postcss";
+import { motion } from "framer-motion";
 import { RatingStar } from "rating-star";
-
 const CoursesPage: FC = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
@@ -43,10 +43,10 @@ const CoursesPage: FC = () => {
               className="mb-6 lg:mb-0 hover:-translate-y-2 ease-out duration-300"
               key={course._id}
             >
-              <div className="relative block rounded-lg shadow-lg">
-                <div className="flex flex-row justify-center">
+              <div className="relative block bg-white rounded-lg shadow-lg">
+                <div className="flex">
                   <div
-                    className="relative mt-[20px] overflow-hidden bg-no-repeat bg-cover shadow-lg rounded-lg justify-center"
+                    className="relative overflow-hidden bg-no-repeat bg-cover shadow-lg rounded-lg mx-4 -mt-4"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
@@ -115,13 +115,18 @@ const CoursesPage: FC = () => {
     );
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.5, duration: 1 }}
+    >
       <SearchBar getSearchValue={getSearchValue} />
       <div className="flex flex-row items-center mt-4 mb-10 justify-between">
         <h1 className="text-3xl font-bold mr-3">COURSES</h1>
       </div>
       <div>{renderCourses()}</div>
-    </>
+    </motion.div>
   );
 };
 

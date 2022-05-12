@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { setConstantValue } from "typescript";
-
+import { motion } from "framer-motion";
 const sidebarItems: { url: string; content: string; iconClass: string }[] = [
   { url: "/course", content: "Courses", iconClass: "far fa-books" },
   {
@@ -36,7 +36,10 @@ const Sidebar = () => {
       </Link>
     ));
   return (
-    <div
+    <motion.div
+      initial={{ x: -100 }}
+      animate={{ x: 0 }}
+      transition={{ delay: 0.2, type: "tween" }}
       className={`z-50 bg-white fixed top-1/2 -translate-y-1/2 left-0  ${
         hiddenSidebar ? "w-auto" : "w-[160px]"
       } flex flex-col py-4 rounded-r-xl text-lg drop-shadow border ease-out duration-300`}
@@ -48,7 +51,7 @@ const Sidebar = () => {
       >
         <i className={`far fa-angle-${hiddenSidebar ? "right" : "left"}`}></i>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

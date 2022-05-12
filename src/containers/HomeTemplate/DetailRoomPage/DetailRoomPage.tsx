@@ -15,7 +15,8 @@ const DetailRoomPage: FC = () => {
   const userId = JSON.parse(localStorage.getItem('userId') || '');
   const username = JSON.parse(localStorage.getItem('username') || '');
   const myRef: any = useRef(null);
-  const executeScroll = () => myRef.current.scrollIntoView();
+  const executeScroll = () =>
+    myRef.current.scrollIntoView({ behavior: 'smooth' });
 
   const dispatch = useDispatch();
   const [message, setMessage] = useState('');
