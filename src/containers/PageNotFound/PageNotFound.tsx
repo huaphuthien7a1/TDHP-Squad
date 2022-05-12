@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 const PageNotFound = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className='flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28'>
         <div className='w-full lg:w-1/2'>
           <img
@@ -37,7 +42,7 @@ const PageNotFound = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
