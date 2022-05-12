@@ -18,10 +18,8 @@ const DetailLearningPathPage: FC = (props: any) => {
           />
         </div>
         <div className="w-full lg:w-2/3 p-6">
-          <h2 className="text-3xl mb-6 font-medium text-secondary">
-            {learningPath.name}
-          </h2>
-          <div className="text-lg flex items-center text-secondary">
+          <h2 className="text-3xl mb-6 font-medium">{learningPath.name}</h2>
+          <div className="text-lg flex items-center">
             Rating:{" "}
             <RatingStar
               maxScore={5}
@@ -78,7 +76,7 @@ const DetailLearningPathPage: FC = (props: any) => {
                     {/*  */}
                     <div className="flex justify-between mb-1">
                       <div className="font-medium">
-                        <i className="far fa-graduation-cap"></i>
+                        <i className="far fa-graduation-cap text-secondary"></i>
                         <span className="ml-2">{`${course.videos.length} Lessons`}</span>
                       </div>
                       <RatingStar
@@ -98,7 +96,7 @@ const DetailLearningPathPage: FC = (props: any) => {
                       data-mdb-ripple-color="light"
                       className=""
                     >
-                      <button className="px-4 py-2.5 block bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-auto">
+                      <button className="px-4 py-2.5 block bg-secondary text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-darkSecondary hover:shadow-lg focus:bg-darkSecondary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkSecondary active:shadow-lg transition duration-150 ease-in-out mx-auto">
                         View the course
                       </button>
                     </Link>

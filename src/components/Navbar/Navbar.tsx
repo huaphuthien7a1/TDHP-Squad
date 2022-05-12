@@ -51,10 +51,17 @@ const Navbar = () => {
   };
   return (
     <div className="bg-white fixed top-0 left-0 right-0 h-[64px] z-50 flex justify-between items-center px-6 border-b-2">
-      <Link to="/">
-        <h1 className="text-5xl font-bold text-secondary m-0">TDHP</h1>
+      <Link className="hidden md:block" to="/">
+        <h1 className="text-3xl font-bold text-black m-0">TDHP E-learning</h1>
       </Link>
-      
+
+      <Link
+        className="inline-block md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 w-10 h-10"
+        to="/"
+      >
+        <img className="w-full h-full" src="/assets/navbar-logo.svg" alt="" />
+      </Link>
+
       <div className="text-lg">
         {!localStorage.getItem("token") ? (
           <>
@@ -77,7 +84,7 @@ const Navbar = () => {
               className="flex items-center relative cursor-pointer"
               data-dropdown
             >
-              <i className="fas fa-user p-2 rounded-full border-2 border-black bg-white hover:bg-slate-100 mr-3"></i>
+              <i className="fas fa-user p-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-slate-100 mr-3"></i>
               <p className="italic cursor-pointer m-0">Hi, {username}</p>
               <ul
                 className={`absolute ${

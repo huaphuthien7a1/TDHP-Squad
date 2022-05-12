@@ -27,9 +27,9 @@ const Sidebar = () => {
         <div
           className={`py-3 my-1 mx-3 px-3 ${
             location.pathname.indexOf(item.url) !== -1
-              ? "bg-slate-200"
-              : "bg-white"
-          } hover:bg-slate-100 rounded-xl ease-out duration-300 active:bg-slate-200 text-black`}
+              ? "bg-secondary text-white"
+              : "bg-white text-secondary"
+          } hover:bg-slate-100 rounded-xl ease-out duration-300 active:bg-slate-200`}
         >
           {hiddenSidebar ? <i className={item.iconClass}></i> : item.content}
         </div>
@@ -39,7 +39,7 @@ const Sidebar = () => {
     <motion.div
       initial={{ x: -100, y: -100 }}
       animate={{ x: 0, y: -100 }}
-      transition={{ delay: 0.2, type: 'tween' }}
+      transition={{ delay: 0.2, type: "tween" }}
       className={`z-50 bg-white fixed top-1/2 -translate-y-1/2 left-0  ${
         hiddenSidebar ? "w-auto" : "w-[160px]"
       } flex flex-col py-4 rounded-r-xl text-lg drop-shadow border ease-out duration-300`}

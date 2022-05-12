@@ -7,6 +7,7 @@ const DetailCoursePage = (props: any) => {
   const [videoInfo, setVideoInfo] = useState({
     url: course ? course.videos[0].url : "",
     name: course ? course.videos[0].name : "",
+    videoId: course ? course.videos[0]._id : "",
   });
 
   const handleChooseVideo = (video: any) => {
@@ -24,32 +25,36 @@ const DetailCoursePage = (props: any) => {
               playing={true}
               controls={true}
               url={videoInfo.url}
+              style={{
+                backgroundColor: "black",
+              }}
             />
           </div>
-          <h2 className="text-xl px-4 mb-8 font-semibold text-secondary">
+          <h2 className="text-xl px-4 mb-10 font-semibold text-black">
             {videoInfo.name}
           </h2>
-          <div className="p-4 border-t-[1px] border-primary opacity-60">
-            <h3 className="text-center text-xl font-medium text-secondary">
+
+          <div className="p-6 w-full bg-gray-200 rounded-xl relative">
+            <h3 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-medium px-6 py-3 bg-secondary text-white rounded-full">
               Course Information
             </h3>
-            <h4 className="text-lg mb-3">
-              <span className="font-medium text-secondary">Course name: </span>
+            <h4 className="text-lg mb-3 font-medium text-black">
               {course.name}
             </h4>
-            <div className="mb-3 text-secondary">
-              <i className="mr-2 far fa-eye"></i>
+            <div>
+              <p className="leading-6">{course.description}</p>
+            </div>
+            <div className="mb-2">
+              <i className="mr-2 text-secondary far fa-eye"></i>
               {course.views} Views
             </div>
-            <div className="flex items-center font-medium mb-3 text-secondary">
-              Rating:{" "}
-              <RatingStar maxScore={5} id={course._id} rating={course.rating} />
-            </div>
-            <div>
-              <h4 className="text-lg font-medium mb-2 text-secondary">
-                Description:
-              </h4>
-              <p className="leading-6 text-secondary">{course.description}</p>
+            <div className="flex items-center font-medium ml-[-8px]">
+              <RatingStar
+                maxScore={5}
+                id={course._id}
+                rating={course.rating}
+                size={20}
+              />
             </div>
           </div>
         </div>
@@ -58,17 +63,31 @@ const DetailCoursePage = (props: any) => {
             return (
               <div
                 key={video._id}
-                className="w-full flex gap-3 border-b-2 border-gray-200 py-3 cursor-pointer hover:bg-gray-50"
+                className={`${
+                  videoInfo.videoId === video._id
+                    ? "bg-lightSecondary"
+                    : "hover:bg-gray-50"
+                } w-full flex items-stretch gap-x-3 border-b-2 border-gray-200 p-3 cursor-pointer rounded-xl`}
                 onClick={() =>
-                  handleChooseVideo({ url: video.url, name: video.name })
+                  handleChooseVideo({
+                    url: video.url,
+                    name: video.name,
+                    videoId: video._id,
+                  })
                 }
               >
                 <img
-                  className="w-36 h-28 object-cover rounded-lg"
+                  className="w-36 h-28 object-cover rounded-xl"
                   src={course.thumbnail.url}
                   alt=""
                 />
-                <h4 className="text-lg text-secondary font-medium truncate leading-[7rem]">
+                <h4
+                  className={`text-lg ${
+                    videoInfo.videoId === video._id
+                      ? "text-white"
+                      : "text-black"
+                  } font-medium truncate mt-2`}
+                >
                   {video.name}
                 </h4>
               </div>

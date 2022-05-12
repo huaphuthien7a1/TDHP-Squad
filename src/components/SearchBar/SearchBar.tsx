@@ -16,13 +16,13 @@ const SearchBar: React.FC<any> = (props: any) => {
           <input
             type="search"
             name="search"
-            className="rounded-l-lg form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-gray-600 focus:outline-none"
+            className="rounded-l-lg form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-secondary focus:outline-none"
             placeholder="Search"
             aria-label="Search"
             aria-describedby="button-addon2"
           />
           <button
-            className="rounded-r-lg btn inline-block px-6 py-2.5 bg-slate-800 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-slate-900 hover:shadow-lg focus:bg-slate-900  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-700 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+            className="rounded-r-lg btn inline-block px-6 py-2.5 bg-secondary text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-darkSecondary hover:shadow-lg focus:bg-darkSecondary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkSecondary active:shadow-lg transition duration-150 ease-in-out flex items-center"
             type="submit"
             id="button-addon2"
           >

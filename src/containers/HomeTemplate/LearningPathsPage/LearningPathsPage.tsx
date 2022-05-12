@@ -63,7 +63,7 @@ const LearningPathsPage: FC = () => {
                   </div>
 
                   <div className="font-medium text-gray-900">
-                    <i className="far fa-graduation-cap"></i>
+                    <i className="far fa-graduation-cap text-secondary"></i>
                     <span className="ml-2">{`${learningPath.courses.length} Courses`}</span>
                   </div>
                   <div className="ml-[-8px] mb-1">

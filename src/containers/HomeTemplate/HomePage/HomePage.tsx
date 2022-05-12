@@ -62,7 +62,7 @@ const HomePage = () => {
                   </p> */}
                   <div className="flex justify-between mb-1">
                     <div className="font-medium">
-                      <i className="far fa-graduation-cap"></i>
+                      <i className="far text-secondary fa-graduation-cap"></i>
                       <span className="ml-2">{`${course.videos.length} Lessons`}</span>
                     </div>
                     <RatingStar
@@ -81,7 +81,7 @@ const HomePage = () => {
                     data-mdb-ripple-color="light"
                     className=""
                   >
-                    <button className="px-4 py-2.5 block bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-auto">
+                    <button className="px-4 py-2.5 block bg-secondary text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-darkSecondary hover:shadow-lg focus:bg-darkSecondary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkSecondary active:shadow-lg transition duration-150 ease-in-out mx-auto">
                       View the course
                     </button>
                   </Link>
@@ -129,7 +129,7 @@ const HomePage = () => {
       </Link>
       <div>{renderCourses()}</div>
       <Link to="/course">
-        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8">
+        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8 font-medium leading-tight uppercase shadow-md hover:bg-darkPrimary hover:shadow-lg focus:bg-darkPrimary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkPrimary active:shadow-lg transition duration-150 ease-in-out">
           More Courses
         </button>
       </Link>
@@ -138,7 +138,7 @@ const HomePage = () => {
       </Link>
       <div>{renderLearningPaths()}</div>
       <Link to="/learning-path">
-        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8">
+        <button className="mx-auto flex justify-center items-center rounded-full px-10 py-3 bg-primary text-white text-xl my-8 font-medium leading-tight uppercase shadow-md hover:bg-darkPrimary hover:shadow-lg focus:bg-darkPrimary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkPrimary active:shadow-lg transition duration-150 ease-in-out">
           More Learning Paths
         </button>
       </Link>

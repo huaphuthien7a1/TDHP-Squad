@@ -112,7 +112,7 @@ const RoomsPage: FC = () => {
                       href={`/room/${room._id}`}
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
-                      className="inline-block text-center mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      className="inline-block text-center mx-auto px-6 py-2.5 bg-secondary text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-darkSecondary hover:shadow-lg focus:bg-darkSecondary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkSecondary active:shadow-lg transition duration-150 ease-in-out"
                     >
                       Join chat room
                     </a>
@@ -125,7 +125,7 @@ const RoomsPage: FC = () => {
                       }}
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
-                      className="cursor-pointer text-center inline-block px-4 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mb-0"
+                      className="cursor-pointer text-center inline-block px-4 py-2.5 bg-secondary text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-darkSecondary hover:shadow-lg focus:bg-darkSecondary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darkSecondary active:shadow-lg transition duration-150 ease-in-out mb-0"
                     >
                       Register for chat room
                     </p>
