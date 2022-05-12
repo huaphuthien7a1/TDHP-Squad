@@ -16,6 +16,7 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.3",
     "node-sass": "^7.0.1",
+    "object-to-formdata": "^4.4.2",
     "postcss": "^8.4.13",
     "pure-react-carousel": "^1.28.1",
     "rating-star": "^1.1.0",

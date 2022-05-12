@@ -36,6 +36,8 @@ const Login: FC = () => {
         exp: number;
         iat: number;
       } = jwt(res.data.token.accessToken);
+      console.log(jwt(res.data.token.accessToken));
+
       localStorage.setItem('userId', JSON.stringify(accountInfo.userId));
       localStorage.setItem('username', JSON.stringify(accountInfo.username));
       localStorage.setItem(
