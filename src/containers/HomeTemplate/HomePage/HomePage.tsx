@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { actFetchCourses } from 'redux/actions/course.action';
 import { actFetchLearningPaths } from 'redux/actions/learningPath.action';
 import IRootState from 'models/IRootState';
-
+import { motion } from 'framer-motion';
 const HomePage = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
@@ -90,7 +90,12 @@ const HomePage = () => {
     );
   };
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.5, duration: 1 }}
+    >
       <Banner />
       <Link to='/course'>
         <h1 className='text-3xl mt-4 font-bold'>COURSES</h1>
@@ -102,7 +107,7 @@ const HomePage = () => {
       </Link>
 
       <div className='min-h-[350px]'>{renderLearningPaths()}</div>
-    </div>
+    </motion.div>
   );
 };
 

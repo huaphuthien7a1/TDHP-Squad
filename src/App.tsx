@@ -6,6 +6,7 @@ import HomeTemplate from './containers/HomeTemplate';
 import AdminTemplate from './containers/AdminTemplate';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const renderRoutesHome = (routes: any[]) => {
@@ -37,15 +38,17 @@ function App() {
     }
   };
   return (
-    <BrowserRouter>
-      <Switch>
-        {renderRoutesHome(routesHome)}
-        {renderRoutesAdmin(routesAdmin)}
-        <Route path='/login' component={LoginPage}></Route>
-        <Route path='/register' component={RegisterPage}></Route>
-        <Route path='' component={PageNotFound}></Route>
-      </Switch>
-    </BrowserRouter>
+    <AnimatePresence exitBeforeEnter>
+      <BrowserRouter>
+        <Switch>
+          {renderRoutesHome(routesHome)}
+          {renderRoutesAdmin(routesAdmin)}
+          <Route path='/login' component={LoginPage}></Route>
+          <Route path='/register' component={RegisterPage}></Route>
+          <Route path='' component={PageNotFound}></Route>
+        </Switch>
+      </BrowserRouter>
+    </AnimatePresence>
   );
 }
 
