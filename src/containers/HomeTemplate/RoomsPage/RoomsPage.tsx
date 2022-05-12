@@ -79,7 +79,10 @@ const RoomsPage: FC = () => {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
-                  <img src={room.thumbnail.url} className="w-full" />
+                  <img
+                    src={room.thumbnail.url}
+                    className="w-full object-cover"
+                  />
                   <Link
                     to={{
                       pathname: `/room/${room._id}`,

@@ -52,7 +52,7 @@ const CoursesPage: FC = () => {
                   >
                     <img
                       src={course.thumbnail.url}
-                      className="w-[365px] h-[200px] object-fit"
+                      className="w-[365px] h-[200px] object-cover"
                       alt=""
                     />
                     <Link

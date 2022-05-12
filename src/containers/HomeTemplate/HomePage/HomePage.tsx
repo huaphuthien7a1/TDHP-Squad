@@ -51,7 +51,7 @@ const HomePage = () => {
             >
               <div className="text-black max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300 p-5">
                 <img
-                  className="w-ful rounded"
+                  className="w-ful rounded object-cover"
                   src={course.thumbnail.url}
                   alt="Sunset in the mountains"
                 />

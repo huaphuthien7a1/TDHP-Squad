@@ -76,7 +76,7 @@ const LearningPathsPage: FC = () => {
                   </div>
                   <div className="flex items-center">
                     <img
-                      className="w-10 h-10 rounded-full mr-4"
+                      className="w-10 h-10 rounded-full mr-4 object-cover"
                       src={learningPath.thumbnail.url}
                       alt="Avatar of Jonathan Reinink"
                     />
