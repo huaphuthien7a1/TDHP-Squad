@@ -10,3 +10,7 @@ export const URL_GET_HISTORY_CHAT = (id: string) =>
   `${process.env.REACT_APP_BASE_URL}/chat/${id}`;
 export const URL_JOIN_ROOM = (roomId: string) =>
   `${process.env.REACT_APP_BASE_URL}/user/join-room/${roomId}`;
+export const URL_GET_SEARCH_COURSES = (name: string) =>
+  `${process.env.REACT_APP_BASE_URL}/course/search/${name}`;
+export const URL_GET_SEARCH_LEARNING_PATHS = (name: string) =>
+  `${process.env.REACT_APP_BASE_URL}/learning-path/search/${name}`;

@@ -1,13 +1,19 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchCourses } from "redux/actions/course.action";
+import {
+  actFetchCourses,
+  actFetchSearchCourses,
+} from "redux/actions/course.action";
 import IRootState from "models/IRootState";
 import Spinner from "components/Spinner";
+import SearchBar from "components/SearchBar";
+import { ChildProps } from "postcss";
 
 const CoursesPage: FC = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
+
   const { isLoading, listCourse } = useSelector((state: IRootState) => {
     return state.courseReducer;
   });
@@ -17,6 +23,14 @@ const CoursesPage: FC = () => {
   useEffect(() => {
     setCourses(listCourse);
   }, [listCourse]);
+
+  const getSearchValue = (data: any): any => {
+    if (data.value === "") {
+      dispatch(actFetchCourses() as any);
+    } else {
+      dispatch(actFetchSearchCourses(data.value) as any);
+    }
+  };
 
   const renderCourses = () => {
     if (isLoading) return <Spinner />;
@@ -83,6 +97,7 @@ const CoursesPage: FC = () => {
   };
   return (
     <>
+      <SearchBar getSearchValue={getSearchValue} />
       <div className="flex flex-row items-center mt-4 mb-10 justify-between">
         <h1 className="text-3xl font-bold mr-3">COURSES</h1>
       </div>
