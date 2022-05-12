@@ -8,7 +8,7 @@ const DetailLearningPathPage: FC = (props: any) => {
 
   return (
     <div>
-      <h1 className="text-3xl mt-4 font-bold mb-10">COURSES</h1>
+      <h1 className="text-3xl mt-4 font-bold mb-10">LEARNING PATH</h1>
       <div className="flex flex-col lg:flex-row bg-primary bg-opacity-30 mb-14 rounded-xl">
         <div className="w-full lg:w-1/3 p-4 h-64 overflow-hidden">
           <img
