@@ -1,11 +1,13 @@
 import { FC, useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import { ICourseState } from 'models/ICourseState';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actCloseModal } from 'redux/actions/modal.action';
 import { actCreateCourse, actFetchCourses } from 'redux/actions/course.action';
 import { serialize } from 'object-to-formdata';
 import Swal from 'sweetalert2';
+import { Spin } from 'antd';
+import IRootState from 'models/IRootState';
 const options = {
   indices: false,
   nullsAsUndefineds: false,
@@ -16,6 +18,9 @@ const options = {
 };
 const CreateCourseForm: FC = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(
+    (state: IRootState) => state.courseReducer.isLoading
+  );
   const [values, setValues] = useState<ICourseState>({
     name: '',
     description: '',
@@ -71,41 +76,15 @@ const CreateCourseForm: FC = () => {
     const form_data = serialize(values);
 
     console.log(form_data.getAll);
-
-    actCreateCourse(form_data)
-      .then((res) => {
-        console.log(res.data);
-        Swal.fire({
-          imageWidth: '400',
-          imageHeight: '100',
-          backdrop: 'none',
-          showCloseButton: true,
-          icon: 'success',
-          title: res.data.msg,
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-        });
-        dispatch(actFetchCourses() as any);
-        dispatch(actCloseModal());
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-        Swal.fire({
-          imageWidth: '400',
-          imageHeight: '100',
-          backdrop: 'none',
-          showCloseButton: true,
-          icon: 'error',
-          title: error.response.data.message,
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-        });
-      });
+    dispatch(actCreateCourse(form_data) as any);
   };
   return (
     <>
+      {isLoading && (
+        <div className='absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-white/75 z-50'>
+          <Spin size='large' />
+        </div>
+      )}
       <h1 className='text-3xl mt-4 font-bold'>Create course</h1>
 
       <label htmlFor='name' className='block py-1'>
