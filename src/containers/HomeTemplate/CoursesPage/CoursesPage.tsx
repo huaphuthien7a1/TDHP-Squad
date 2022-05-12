@@ -42,14 +42,14 @@ const CoursesPage: FC = () => {
               className="mb-6 lg:mb-0 hover:-translate-y-2 ease-out duration-300"
               key={course._id}
             >
-              <div className="relative block bg-white rounded-lg shadow-lg">
-                <div className="flex">
+              <div className="relative block rounded-lg shadow-lg">
+                <div className="flex flex-row justify-center">
                   <div
-                    className="relative overflow-hidden bg-no-repeat bg-cover shadow-lg rounded-lg mx-4 -mt-4"
+                    className="relative mt-[20px] overflow-hidden bg-no-repeat bg-cover shadow-lg rounded-lg justify-center"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
-                    <img src={course.thumbnail.url} className="w-full" alt="" />
+                    <img src={course.thumbnail.url} className="w-[365px] h-[200px] object-fit" alt="" />
                     <Link
                       to={{
                         pathname: `/course/${course._id}`,

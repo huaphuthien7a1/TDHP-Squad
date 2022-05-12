@@ -48,9 +48,9 @@ const HomePage = () => {
               }}
               key={index}
             >
-              <div className='text-black max-w-sm rounded overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
+              <div className='text-black px-[15px] pt-[15px] max-w-sm rounded-lg overflow-hidden shadow-lg translate-y-0 hover:-translate-y-2 ease-out duration-300'>
                 <img
-                  className='w-full'
+                  className='w-[365px] h-[200px] rounded-lg'
                   src={course.thumbnail.url}
                   alt='Sunset in the mountains'
                 />
