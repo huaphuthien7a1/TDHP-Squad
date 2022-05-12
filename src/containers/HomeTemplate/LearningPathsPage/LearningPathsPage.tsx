@@ -2,8 +2,12 @@ import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import IRootState from "models/IRootState";
-import { actFetchLearningPaths } from "redux/actions/learningPath.action";
+import {
+  actFetchLearningPaths,
+  actFetchSearchLearningPaths,
+} from "redux/actions/learningPath.action";
 import Spinner from "components/Spinner";
+import SearchBar from "components/SearchBar";
 
 const LearningPathsPage: FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +24,15 @@ const LearningPathsPage: FC = () => {
   useEffect(() => {
     setLearningPaths(listLearningPath);
   }, [listLearningPath]);
+
+  const getSearchValue = (data: any): any => {
+    if (data.value === "") {
+      dispatch(actFetchLearningPaths() as any);
+    } else {
+      dispatch(actFetchSearchLearningPaths(data.value) as any);
+    }
+  };
+
   const renderLearningPaths = () => {
     if (isLoadingLearningPaths) return <Spinner />;
     return (
@@ -70,6 +83,7 @@ const LearningPathsPage: FC = () => {
   };
   return (
     <>
+      <SearchBar getSearchValue={getSearchValue} />
       <h1 className="text-3xl mt-4 font-bold">LEARNING PATH</h1>
       {renderLearningPaths()}{" "}
     </>

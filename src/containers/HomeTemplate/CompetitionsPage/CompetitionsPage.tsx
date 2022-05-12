@@ -1,5 +1,5 @@
 const CompetitionsPage = () => {
-  return <div>CompetitionsPage</div>;
+  return <div>Comming Soon</div>;
 };
 
 export default CompetitionsPage;
