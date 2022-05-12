@@ -22,7 +22,7 @@ export const actFetchChats = (id: string) => (dispatch: Dispatch<any>) => {
       dispatch(getChatFail());
     });
 };
-export const actClearRoom = (roomId: string) => {
+export const actClearChat = (roomId: string) => {
   const token = JSON.parse(localStorage.getItem('token') || '');
   return axios({
     url: URL_CLEAR_ROOM(roomId),
