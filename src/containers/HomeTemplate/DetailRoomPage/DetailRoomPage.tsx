@@ -57,6 +57,7 @@ const DetailRoomPage: FC = () => {
         setHistoryMessage((pre) => [...pre, data]);
       }
     );
+    
     return () => {
       if (socket) socket.disconnect();
     };
