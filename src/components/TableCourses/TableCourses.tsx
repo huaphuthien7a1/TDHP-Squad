@@ -62,16 +62,6 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
 
   const columns: any = [
     {
-      title: '_id',
-      dataIndex: '_id',
-      key: '_id',
-      sorter: (item1: { _id: any }, item2: { _id: any }) =>
-        item1._id.localeCompare(item2._id),
-      sortOrder: sortedInfo.columnKey === '_id' && sortedInfo.order,
-      showOnResponse: true,
-      showOnDesktop: true,
-    },
-    {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
