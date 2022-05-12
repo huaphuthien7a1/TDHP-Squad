@@ -1,18 +1,15 @@
-import React, { useState, FC } from 'react';
-import { Table, Button, Tag, Popconfirm, Space, Spin } from 'antd';
+import React, { FC, useState } from 'react';
 import { DeleteFilled, EditFilled } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { actFetchCourses } from 'redux/actions/course.action';
-import Swal from 'sweetalert2';
-import { ColumnsType } from 'antd/es/table';
 import Spinner from 'components/Spinner';
+import { Table, Button, Tag, Popconfirm, Space, Spin } from 'antd';
+
 type IProps = {
   isLoading: boolean;
-  listCourse: any[];
+  listLearningPath: any[];
 };
-
-const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
+const TableLearningPath: FC<IProps> = ({ isLoading, listLearningPath }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [state, setState] = useState<{ filteredInfo: any; sortedInfo: any }>({
@@ -29,12 +26,10 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
   let { sortedInfo, filteredInfo } = state;
   sortedInfo = sortedInfo || {};
   filteredInfo = filteredInfo || {};
-
   const handleSubmitEdit = (record: any) => {
     // history.push('/team-detail/' + record.id);
   };
-
-  const handleRemoveCourse = (record: any) => {
+  const handleRemoveLearningPath = (record: any) => {
     // actDeleteTeamById(record.id)
     //   .then((res) => {
     //     Swal.fire({
@@ -58,7 +53,6 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
     //     });
     //   });
   };
-
   const columns: any = [
     {
       title: 'Name',
@@ -69,48 +63,49 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
       showOnDesktop: true,
     },
     {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-      showOnResponse: true,
-      showOnDesktop: true,
-    },
-    {
-      title: 'Views',
-      dataIndex: 'views',
-      key: 'views',
-      showOnResponse: true,
-      showOnDesktop: true,
-      ellipsis: true,
-      sorter: (a: { views: number }, b: { views: number }) => a.views - b.views,
-      sortOrder: sortedInfo.columnKey === 'views' && sortedInfo.order,
-    },
-
-    {
       title: 'Rating',
       dataIndex: 'rating',
       key: 'rating',
+
       showOnResponse: true,
       showOnDesktop: true,
-      ellipsis: true,
       sorter: (a: { rating: number }, b: { rating: number }) =>
         a.rating - b.rating,
       sortOrder: sortedInfo.columnKey === 'rating' && sortedInfo.order,
     },
     {
-      title: 'Videos',
-      dataIndex: 'videos',
-      key: 'videos',
+      title: 'IsProCourse',
+      dataIndex: 'isProCourse',
+      key: 'isProCourse',
+
+      showOnResponse: true,
+      showOnDesktop: true,
+      render: (text: any, record: any, index: React.Key | null | undefined) => {
+        return (
+          <div
+            className={`rounded-xl p-2 w-1/2 text-center text-white ${
+              record.isProCourse ? 'bg-yellow-500' : 'bg-red-500'
+            }`}
+          >
+            {record.isProCourse ? 'Yes' : 'No'}
+          </div>
+        );
+      },
+    },
+    {
+      title: 'Courses',
+      dataIndex: 'courses',
+      key: 'courses',
       showOnResponse: true,
       showOnDesktop: true,
       ellipsis: true,
       render: (text: any, record: any, index: React.Key | null | undefined) => {
         return (
           <ul>
-            {record.videos.map((item: any, index: any) => (
+            {record.courses.map((item: any, index: any) => (
               <li key={index}>
                 <a href={item.url} target='_blank' rel='noreferrer'>
-                  Link video {index + 1}
+                  Course {index + 1}: {item.name}
                 </a>
               </li>
             ))}
@@ -139,18 +134,19 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
       },
     },
     {
-      title: 'PDF',
-      dataIndex: 'pdf',
-      key: 'pdf',
+      title: 'Rooms',
+      dataIndex: 'rooms',
+      key: 'rooms',
       showOnResponse: true,
       showOnDesktop: true,
-      render: (text: string, record: any, index: any) => {
+      ellipsis: true,
+      render: (text: any, record: any, index: React.Key | null | undefined) => {
         return (
           <ul>
-            {record.pdf.map((item: any, index: any) => (
+            {record.rooms.map((item: any, index: any) => (
               <li key={index}>
                 <a href={item.url} target='_blank' rel='noreferrer'>
-                  Link PDF {index + 1}
+                  Room {index + 1}: {item.name}
                 </a>
               </li>
             ))}
@@ -181,7 +177,7 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
             title='Are you sure you want to delete this course?'
             okText='Yes'
             cancelText='No'
-            onConfirm={() => handleRemoveCourse(record)}
+            onConfirm={() => handleRemoveLearningPath(record)}
           >
             <button
               type='button'
@@ -204,7 +200,7 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
         className='m-3 drop-shadow-lg'
         size='middle'
         columns={columns}
-        dataSource={listCourse}
+        dataSource={listLearningPath}
         onChange={handleChange}
         scroll={{ x: 1100 }}
       />
@@ -213,5 +209,4 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
 
   return <>{renderTable()}</>;
 };
-
-export default TableCourses;
+export default TableLearningPath;
