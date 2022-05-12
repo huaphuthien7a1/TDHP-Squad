@@ -3,14 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { setConstantValue } from "typescript";
 
 const sidebarItems: { url: string; content: string; iconClass: string }[] = [
-  { url: "/course", content: "Courses", iconClass: "fal fa-books" },
+  { url: "/course", content: "Courses", iconClass: "far fa-books" },
   {
     url: "/learning-path",
     content: "Learning Paths",
-    iconClass: "fal fa-compass",
+    iconClass: "far fa-compass",
   },
-  { url: "/room", content: "Rooms", iconClass: "fal fa-comments-alt" },
-  { url: "/competition", content: "Competitions", iconClass: "fal fa-sword" },
+  { url: "/room", content: "Rooms", iconClass: "far fa-comments-alt" },
+  { url: "/competition", content: "Competitions", iconClass: "far fa-sword" },
 ];
 
 const Sidebar = () => {
