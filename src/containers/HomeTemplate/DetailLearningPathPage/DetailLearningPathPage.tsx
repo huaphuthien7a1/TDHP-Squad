@@ -73,10 +73,22 @@ const DetailLearningPathPage: FC = (props: any) => {
                         state: { course: course },
                       }}
                     >
-                      <h5 className="font-bold text-lg mb-3">{course.name}</h5>
+                      <h5 className="font-bold text-lg mb-6">{course.name}</h5>
                     </Link>
-
-                    <p className="mb-4 pb-2">{course.description}</p>
+                    {/*  */}
+                    <div className="flex justify-between mb-1">
+                      <div className="font-medium">
+                        <i className="far fa-graduation-cap"></i>
+                        <span className="ml-2">{`${course.videos.length} Lessons`}</span>
+                      </div>
+                      <RatingStar
+                        maxScore={5}
+                        id={course._id}
+                        rating={course.rating}
+                        size={15}
+                      />
+                    </div>
+                    {/* <p className="mb-4 pb-2">{course.description}</p> */}
                     <Link
                       to={{
                         pathname: `/course/${course._id}`,
@@ -84,9 +96,11 @@ const DetailLearningPathPage: FC = (props: any) => {
                       }}
                       data-mdb-ripple="true"
                       data-mdb-ripple-color="light"
-                      className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      className=""
                     >
-                      View the course
+                      <button className="px-4 py-2.5 block bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-auto">
+                        View the course
+                      </button>
                     </Link>
                   </div>
                 </div>
