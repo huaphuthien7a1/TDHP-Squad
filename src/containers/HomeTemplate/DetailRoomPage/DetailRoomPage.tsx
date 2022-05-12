@@ -1,13 +1,13 @@
 import { useEffect, FC, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { actGetRoomById } from 'redux/actions/room.action';
-import { actFetchChats } from 'redux/actions/chat.action';
+import { actFetchChats, actClearChat } from 'redux/actions/chat.action';
 import IRootState from 'models/IRootState';
 import Spinner from 'components/Spinner';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 
@@ -27,6 +27,11 @@ const DetailRoomPage: FC = () => {
   const { isLoading, roomDetail } = useSelector(
     (state: IRootState) => state.roomReducer
   );
+  if (roomDetail) {
+    console.log('creator id: ', roomDetail.data.creator._id);
+    console.log('room id: ', roomDetail.data._id);
+  }
+
   const listChat = useSelector(
     (state: IRootState) => state.chatReducer.listChat
   );
@@ -57,6 +62,7 @@ const DetailRoomPage: FC = () => {
         setHistoryMessage((pre) => [...pre, data]);
       }
     );
+
     return () => {
       if (socket) socket.disconnect();
     };
@@ -137,10 +143,51 @@ const DetailRoomPage: FC = () => {
       );
     });
 
+  const handleClearChat = () => {
+    actClearChat(roomDetail.data._id)
+      .then((res) => {
+        console.log(res.data);
+        Swal.fire({
+          imageWidth: '400',
+          imageHeight: '100',
+          backdrop: 'none',
+          showCloseButton: true,
+          icon: 'success',
+          title: res.data.msg || 'Clear successfully',
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        Swal.fire({
+          imageWidth: '400',
+          imageHeight: '100',
+          backdrop: 'none',
+          showCloseButton: true,
+          icon: 'error',
+          title: error.response.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+      });
+  };
   if (isLoadingListChat || isLoading) return <Spinner />;
   return (
     <div>
-      <h1 className='text-4xl font-bold mb-4'>Room chat</h1>
+      <div className='flex justify-between pb-3'>
+        <h1 className='text-4xl font-bold mb-4'>Room chat</h1>
+        {roomDetail.data.creator._id === userId && (
+          <button
+            onClick={handleClearChat}
+            className='px-4 py-2.5 block bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'
+          >
+            Clear room
+          </button>
+        )}
+      </div>
       <div className={`h-[530px] flex flex-col justify-between`}>
         <div className={` overflow-y-scroll h-full flex flex-col justify-end`}>
           <ul id='show-chat' className='h-full'>

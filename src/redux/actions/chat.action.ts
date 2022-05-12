@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import * as ActionType from '../constants';
-import { URL_GET_HISTORY_CHAT } from '../urlAPI';
+import { URL_GET_HISTORY_CHAT, URL_CLEAR_ROOM } from '../urlAPI';
 export const actFetchChats = (id: string) => (dispatch: Dispatch<any>) => {
   const token = JSON.parse(localStorage.getItem('token') || '');
   dispatch(getChatRequest());
@@ -13,6 +13,7 @@ export const actFetchChats = (id: string) => (dispatch: Dispatch<any>) => {
     },
   })
     .then((res) => {
+      console.log(res.data);
       console.log('chatHistory', res.data.chatHistory);
       dispatch(getChatSuccess(res.data.chatHistory));
     })
@@ -20,6 +21,16 @@ export const actFetchChats = (id: string) => (dispatch: Dispatch<any>) => {
       console.log(error.response.data.message);
       dispatch(getChatFail());
     });
+};
+export const actClearChat = (roomId: string) => {
+  const token = JSON.parse(localStorage.getItem('token') || '');
+  return axios({
+    url: URL_CLEAR_ROOM(roomId),
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token.accessToken}`,
+    },
+  });
 };
 
 const getChatRequest = () => {
