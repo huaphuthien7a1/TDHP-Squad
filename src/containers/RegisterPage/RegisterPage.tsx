@@ -1,10 +1,15 @@
-import Register from "components/Register/Register";
-
+import Register from 'components/Register/Register';
+import { motion } from 'framer-motion';
 const RegisterPage = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Register></Register>
-    </div>
+    </motion.div>
   );
 };
 

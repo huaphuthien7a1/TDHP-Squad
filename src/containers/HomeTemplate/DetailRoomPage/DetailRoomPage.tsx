@@ -158,6 +158,7 @@ const DetailRoomPage: FC = () => {
           timer: 1500,
           timerProgressBar: true,
         });
+        dispatch(actFetchChats(params.id) as any);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -179,7 +180,7 @@ const DetailRoomPage: FC = () => {
     <div>
       <div className='flex justify-between pb-3'>
         <h1 className='text-4xl font-bold mb-4'>Room chat</h1>
-        {roomDetail.data.creator._id === userId && (
+        {roomDetail && roomDetail.data.creator._id === userId && (
           <button
             onClick={handleClearChat}
             className='px-4 py-2.5 block bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'
