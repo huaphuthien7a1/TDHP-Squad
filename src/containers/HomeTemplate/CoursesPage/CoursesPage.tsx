@@ -50,7 +50,11 @@ const CoursesPage: FC = () => {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
-                    <img src={course.thumbnail.url} className="w-[365px] h-[200px] object-fit" alt="" />
+                    <img
+                      src={course.thumbnail.url}
+                      className="w-[365px] h-[200px] object-fit"
+                      alt=""
+                    />
                     <Link
                       to={{
                         pathname: `/course/${course._id}`,
