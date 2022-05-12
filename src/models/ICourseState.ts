@@ -1,10 +1,11 @@
 export type ICourseState = {
   name: string;
   description: string;
-  views: number;
-  rating: number;
-  thumbnail: any;
+  views?: number;
+  rating?: number;
+  thumb: any;
   videos: any;
+  pdf: any;
 };
 
 export type IListCourseState = {

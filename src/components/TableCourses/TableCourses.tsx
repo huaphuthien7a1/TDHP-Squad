@@ -145,12 +145,18 @@ const TableCourses: FC<IProps> = ({ isLoading, listCourse }) => {
       key: 'pdf',
       showOnResponse: true,
       showOnDesktop: true,
-      render: (
-        text: string,
-        record: any,
-        index: React.Key | null | undefined
-      ) => {
-        return <div>{record.pdf.url}</div>;
+      render: (text: string, record: any, index: any) => {
+        return (
+          <ul>
+            {record.pdf.map((item: any, index: any) => (
+              <li key={index}>
+                <a href={item.url} target='_blank' rel='noreferrer'>
+                  Link PDF {index + 1}
+                </a>
+              </li>
+            ))}
+          </ul>
+        );
       },
     },
     {

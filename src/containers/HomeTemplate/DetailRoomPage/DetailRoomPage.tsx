@@ -166,6 +166,7 @@ const DetailRoomPage: FC = () => {
             value='Send'
             className='cursor-pointer p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-r-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
           />
+          <i className='fa-solid fa-paper-plane-top'></i>
         </form>
       </div>
     </div>
