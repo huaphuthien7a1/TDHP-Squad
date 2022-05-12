@@ -37,8 +37,8 @@ const Sidebar = () => {
     ));
   return (
     <motion.div
-      initial={{ x: -100 }}
-      animate={{ x: 0 }}
+      initial={{ x: -100, y: -100 }}
+      animate={{ x: 0, y: -100 }}
       transition={{ delay: 0.2, type: 'tween' }}
       className={`z-50 bg-white fixed top-1/2 -translate-y-1/2 left-0  ${
         hiddenSidebar ? 'w-auto' : 'w-[160px]'
