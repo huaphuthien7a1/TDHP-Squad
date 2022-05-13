@@ -9,9 +9,21 @@ import Spinner from 'components/Spinner';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 
 const DetailRoomPage: FC = () => {
+  const [windowDimensions, setWindowDimensions] = useState<{
+    width: any;
+    height: any;
+  }>(getWindowDimensions());
   const userId = JSON.parse(localStorage.getItem('userId') || '');
   const username = JSON.parse(localStorage.getItem('username') || '');
   const myRef: any = useRef(null);
@@ -38,7 +50,14 @@ const DetailRoomPage: FC = () => {
   const isLoadingListChat = useSelector(
     (state: IRootState) => state.chatReducer.isLoading
   );
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   useEffect(() => {
     setHistoryMessage(listChat);
   }, [listChat]);
@@ -177,7 +196,7 @@ const DetailRoomPage: FC = () => {
   };
   if (isLoadingListChat || isLoading) return <Spinner />;
   return (
-    <div>
+    <>
       <div className='flex justify-between pb-3'>
         <h1 className='text-4xl font-bold mb-4'>Room chat</h1>
         {roomDetail && roomDetail.data.creator._id === userId && (
@@ -189,7 +208,12 @@ const DetailRoomPage: FC = () => {
           </button>
         )}
       </div>
-      <div className={`h-[530px] flex flex-col justify-between`}>
+      <div
+        style={{
+          height: windowDimensions.width < 1024 ? 'calc(100% - 64px)' : '530px',
+        }}
+        className={`flex flex-col justify-between`}
+      >
         <div className={` overflow-y-scroll h-full flex flex-col justify-end`}>
           <ul id='show-chat' className='h-full'>
             {renderMessage()}
@@ -218,7 +242,7 @@ const DetailRoomPage: FC = () => {
           <i className='fa-solid fa-paper-plane-top'></i>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
