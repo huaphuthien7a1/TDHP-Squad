@@ -17,7 +17,7 @@ const DetailCoursePage = (props: any) => {
   return (
     <div>
       <h1 className="text-3xl mt-4 font-bold mb-10">{course.name}</h1>
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row justify-center items-center">
         <div className="w-full lg:w-2/3 m-3">
           <div className="w-full h-96 ">
             <ReactPlayer
@@ -36,7 +36,7 @@ const DetailCoursePage = (props: any) => {
 
           <div className="p-6 w-full bg-gray-200 rounded-xl relative">
             <h3 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-medium px-6 py-3 bg-secondary text-white rounded-full">
-              Course Information
+              Information
             </h3>
             <h4 className="text-lg mb-3 font-medium text-black">
               {course.name}
